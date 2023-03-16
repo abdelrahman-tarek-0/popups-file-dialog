@@ -192,3 +192,41 @@ exports.openFile = async (
 
   return files;
 };
+
+
+
+exports.messageBox = async (
+    opts = {
+      title: "",
+      message: "",
+      dialogType: "",
+      iconType: "",
+      defaultSelected: 0,
+    }
+  ) => {
+    let { stdout: answer, stderr } = await exec(
+      commandBuilder("messageBox", opts)
+    );
+    if (stderr) throw new Error(err);
+
+    if (answer.includes("-066944")) {
+      const err = answer?.slice(answer?.indexOf("-066944"))?.split("~")?.at(1);
+      throw new Error(err);
+    }
+    answer = Number(
+      answer // yes/ok=1 no=2 cancel=0
+        ?.slice(answer?.indexOf("-066945"))
+        ?.split("~")
+        ?.at(1)
+    );
+      console.log(answer);
+    return answer;
+  }
+
+  this.messageBox({
+    title: "title",
+    message: "message",
+    dialogType: "yesNo",
+    iconType: "info",
+    defaultSelected: "yes", 
+    }).then((res) => console.log(res));
