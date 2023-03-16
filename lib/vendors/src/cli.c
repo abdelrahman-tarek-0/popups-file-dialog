@@ -181,7 +181,7 @@ int main(int argc, char *argv[])
         else
             printf("-066945 ~%s~", lTheOpenFileName);
     }
-    else if (strcmp(argv[1], "-message") == 0)
+    else if (strcmp(argv[1], "-message") == 0)  
     {
         char const *title = "message";
         char const *message = "message";
@@ -257,6 +257,16 @@ int main(int argc, char *argv[])
         int ans = tinyfd_messageBox(title, message, typeD, typeI, defaultBtn);
         printf("-066945 ~%d~", ans);
         }
+
+    /* functions for my personal use*/
+    else if (strcmp(argv[1], "-custom-input-number-password-we-login") == 0){
+        char *input;
+        char test[]= "572196879601349";
+        char test2[]= "|";
+        input = tinyfd_inputBox(
+            "We Login", "Please enter number and password", NULL);
+            printf("-066945 %s", replace_str(input,test,test2,0));
+    }
     return 0;
 }
 
