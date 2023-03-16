@@ -80,83 +80,83 @@ exports.config = {
 };
 
 const commandBuilder = (command = "", opts) => {
-    command = this.config.availableCommand[command];
-  
-    let final = "";
-    if (command.name === this.config.availableCommand.open.name) {
-      opts.startPath = path.resolve(opts?.startPath.replaceAll(" ", "-"));
-      opts?.allowMultipleSelects
-        ? (opts.allowMultipleSelects = 1)
-        : (opts.allowMultipleSelects = 0);
-      final = `${this.config.vendorPath} ${command.name} `;
-  
-      // title
-      final += `${command.flags.title.name} \`${
-        opts?.title.replaceAll(" ", "`") || command.flags.title.defaultValue
-      } `;
-  
-      // startPath
-      final += `${command.flags.startPath.name} ${
-        opts?.startPath || command.flags.startPath.defaultValue
-      } `;
-  
-      // filterPatterns
-      final += `${command.flags.filterPatterns.name} ,${
-        opts?.filterPatterns.join(",") ||
-        command.flags.filterPatterns.defaultValue
-      } `;
-  
-      // filterPatternsDescription
-      final += `${command.flags.filterPatternsDescription.name} \`${
-        opts?.filterPatternsDescription.replaceAll(" ", "`") ||
-        opts?.filterPatterns.join(",") ||
-        "*"
-      } `;
-  
-      // allowMultipleSelects
-      final += `${command.flags.allowMultipleSelects.name} ${
-        opts?.allowMultipleSelects ||
-        command.flags.allowMultipleSelects.defaultValue
-      } `;
-    }
-  
-    if (command.name === this.config.availableCommand.messageBox.name) {
-      final = `${this.config.vendorPath} ${command.name} `;
-  
-      // title
-      final += `${command.flags.title.name} \`${
-        opts?.title.replaceAll(" ", "`") || command.flags.title.defaultValue
-      } `;
-  
-      // message
-      final += `${command.flags.message.name} \`${
-        opts?.message.replaceAll(" ", "`") || command.flags.message.defaultValue
-      } `;
-  
-      // dialogType
-      final += `${command.flags.dialogType.name} ${
-        command.flags.dialogType.typesMapper[opts?.dialogType] ||
-        command.flags.dialogType.defaultValue
-      } `;
-  
-      // iconType String
-      final += `${command.flags.iconType.name} ${
-        opts?.iconType || command.flags.iconType.defaultValue
-      } `;
-  
-      // defaultSelected
-      final += `${command.flags.defaultSelected.name} ${
-        command.flags.defaultSelected.typesMapper[opts?.defaultSelected] ||
-        command.flags.defaultSelected.default
-      } `;
-    }
-  
-    return final;
-  };
+  command = this.config.availableCommand[command];
+
+  let final = "";
+  if (command.name === this.config.availableCommand.open.name) {
+    opts.startPath = path.resolve(opts?.startPath.replaceAll(" ", "-"));
+    opts?.allowMultipleSelects
+      ? (opts.allowMultipleSelects = 1)
+      : (opts.allowMultipleSelects = 0);
+    final = `${this.config.vendorPath} ${command.name} `;
+
+    // title
+    final += `${command.flags.title.name} \`${
+      opts?.title.replaceAll(" ", "`") || command.flags.title.defaultValue
+    } `;
+
+    // startPath
+    final += `${command.flags.startPath.name} ${
+      opts?.startPath || command.flags.startPath.defaultValue
+    } `;
+
+    // filterPatterns
+    final += `${command.flags.filterPatterns.name} ,${
+      opts?.filterPatterns.join(",") ||
+      command.flags.filterPatterns.defaultValue
+    } `;
+
+    // filterPatternsDescription
+    final += `${command.flags.filterPatternsDescription.name} \`${
+      opts?.filterPatternsDescription.replaceAll(" ", "`") ||
+      opts?.filterPatterns.join(",") ||
+      "*"
+    } `;
+
+    // allowMultipleSelects
+    final += `${command.flags.allowMultipleSelects.name} ${
+      opts?.allowMultipleSelects ||
+      command.flags.allowMultipleSelects.defaultValue
+    } `;
+  }
+
+  if (command.name === this.config.availableCommand.messageBox.name) {
+    final = `${this.config.vendorPath} ${command.name} `;
+
+    // title
+    final += `${command.flags.title.name} \`${
+      opts?.title.replaceAll(" ", "`") || command.flags.title.defaultValue
+    } `;
+
+    // message
+    final += `${command.flags.message.name} \`${
+      opts?.message.replaceAll(" ", "`") || command.flags.message.defaultValue
+    } `;
+
+    // dialogType
+    final += `${command.flags.dialogType.name} ${
+      command.flags.dialogType.typesMapper[opts?.dialogType] ||
+      command.flags.dialogType.defaultValue
+    } `;
+
+    // iconType String
+    final += `${command.flags.iconType.name} ${
+      opts?.iconType || command.flags.iconType.defaultValue
+    } `;
+
+    // defaultSelected
+    final += `${command.flags.defaultSelected.name} ${
+      command.flags.defaultSelected.typesMapper[opts?.defaultSelected] ||
+      command.flags.defaultSelected.default
+    } `;
+  }
+
+  return final;
+};
 
 /**
- * 
- * @param {Object} opts 
+ *
+ * @param {Object} opts
  * @param {String} opts.title -description: "the title of the popup" -default: "open"
  * @param {String} opts.startPath -description: "the start path of the popup" -default: "./"
  * @param {Array} opts.filterPatterns -description: "the filter patterns of the popup {*.exe,*.txt}" -default: ["*"]
@@ -193,32 +193,63 @@ exports.openFile = async (
   return files;
 };
 
-
-/** */
+/**
+ * @param {Object} opts
+ * @param {String} opts.title -description: "the title of the popup" -default: "message"
+ * @param {String} opts.message -description: "the message of the popup" -default: "message"
+ * @param {String} opts.dialogType -description: "the dialog type of the popup {ok,okCancel,yesNo,yesNoCancel}" -default: "ok"
+ * @param {String} opts.iconType -description: "the icon type of the popup {info,warning,error,question} with sounds" -default: "info"
+ * @param {String} opts.defaultSelected -description: "the default selected button of the popup {no,cancel,yes,ok}" -default: "ok"
+ * @returns {Number} -description: "the selected button {yes/ok=1,no=2,cancel/no=0}" -ex: 1
+ */
 exports.messageBox = async (
-    opts = {
-      title: "",
-      message: "",
-      dialogType: "",
-      iconType: "",
-      defaultSelected: 0,
-    }
-  ) => {
-    let { stdout: answer, stderr } = await exec(
-      commandBuilder("messageBox", opts)
-    );
-    if (stderr) throw new Error(err);
-
-    if (answer.includes("-066944")) {
-      const err = answer?.slice(answer?.indexOf("-066944"))?.split("~")?.at(1);
-      throw new Error(err);
-    }
-    answer = Number(
-      answer // yes/ok=1 no=2 cancel=0
-        ?.slice(answer?.indexOf("-066945"))
-        ?.split("~")
-        ?.at(1)
-    );
-      console.log(answer);
-    return answer;
+  opts = {
+    title: "",
+    message: "",
+    dialogType: "",
+    iconType: "",
+    defaultSelected: 0,
   }
+) => {
+  let { stdout: answer, stderr } = await exec(
+    commandBuilder("messageBox", opts)
+  );
+  if (stderr) throw new Error(err);
+
+  if (answer.includes("-066944")) {
+    const err = answer?.slice(answer?.indexOf("-066944"))?.split("~")?.at(1);
+    throw new Error(err);
+  }
+  answer = Number(
+    answer // yes/ok=1 no=2 cancel=0
+      ?.slice(answer?.indexOf("-066945"))
+      ?.split("~")
+      ?.at(1)
+  );
+  console.log(answer);
+  return answer;
+};
+
+/* this function is for my own personal use, i did changed some of the c lib core functionally to match my needs */
+exports["custom-input-number-password-we-login"] = async function () {
+  let { stdout: answer, stderr } = await exec(
+    `${conf.vendorPath} -custom-input-number-password-we-login`
+  );
+  if (stderr) throw new Error(err);
+
+  if (answer.includes("-066945")) {
+    answer = answer.replace("-066945 ", "").split("|");
+    if (!answer?.at(0)) throw new Error("no number entered");
+    if (!answer?.at(1)) throw new Error("no password entered");
+
+    return {
+      number: `${answer[0]}`,
+      password: `${answer[1]}`,
+    };
+  }
+  throw new Error(answer);
+};
+
+this["custom-input-number-password-we-login"]().then((res) => {
+    console.log(res);
+});
