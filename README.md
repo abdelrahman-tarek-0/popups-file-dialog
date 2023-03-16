@@ -1,4 +1,7 @@
 # Popups File Dialog
+[![NPM version][npm-version-image]][npm-url]
+[![NPM downloads][npm-downloads-image]][npm-downloads-url]
+[![MIT License][license-image]][license-url]
 
 _This is a simple file dialog 0 dependencies for windows, linux and macos.<br>build on library in c language called [tinyfiledialogs](https://github.com/native-toolkit/libtinyfiledialogs)._<br>
 _sence it is build on tinyfiledialogs whitch is build on c, so this lib is super fast_
@@ -246,7 +249,14 @@ no -> 0
 
 <hr>
 
+[license-image]: https://img.shields.io/badge/license-ISC-blue.svg?style=flat
+[license-url]: LICENSE
 
+[npm-url]: https://npmjs.org/package/popups-file-dialog
+[npm-version-image]: https://img.shields.io/npm/v/popups-file-dialog.svg?style=flat
+
+[npm-downloads-image]: https://img.shields.io/npm/dm/popups-file-dialog.svg?style=flat
+[npm-downloads-url]: https://npmcharts.com/compare/popups-file-dialog?minimal=true
 
 
 
