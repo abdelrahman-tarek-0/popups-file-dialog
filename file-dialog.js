@@ -226,7 +226,6 @@ exports.messageBox = async (
       ?.split("~")
       ?.at(1)
   );
-  console.log(answer);
   return answer;
 };
 
