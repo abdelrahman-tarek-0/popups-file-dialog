@@ -181,7 +181,82 @@ int main(int argc, char *argv[])
         else
             printf("-066945 ~%s~", lTheOpenFileName);
     }
+    else if (strcmp(argv[1], "-message") == 0)
+    {
+        char const *title = "message";
+        char const *message = "message";
+        char const *typeD = "yesnocancel";
+        char const *typeI = "";
+        int defaultBtn = 1;
 
+        // int ans  = tinyfd_messageBox(title, message, typeD, typeI, 1);
+
+        char flags[][66] = {"--title", "--message", "--type-D", "--type-I", "--default"};
+
+        for (int i = 2; i < argc; i = i + 2)
+        {
+            if (argv[i] && checkStrInArr(flags, argv[i]) != -1)
+            {
+                if (!argv[i + 1])
+                {
+                    return printf("-066944 ~no value for %s detected~", argv[i]);
+                }
+                printf("found the flag %s --> %s in postion %d\n", argv[i], argv[i + 1], i);
+                switch (checkStrInArr(flags, argv[i]))
+                {
+                case 0:
+                {
+                    title = replace_char(argv[i + 1], '`', ' ');
+                    break;
+                }
+                case 1:
+                {
+                    message = replace_char(argv[i + 1], '`', ' ');
+                    break;
+                }
+                case 2:
+                {
+                    typeD = argv[i + 1];
+                    break;
+                }
+                case 3:
+                {
+                    typeI = argv[i + 1];
+                    break;
+                }
+                case 4:
+                {
+                    char *re = argv[i + 1];
+                    if (strcmp(re, "0") == 0)
+                    {
+                        defaultBtn = 0;
+                    }
+                    else if (strcmp(re, "1") == 0)
+                    {
+                        defaultBtn = 1;
+                    }
+                    else if (strcmp(re, "2") == 0)
+                    {
+                        defaultBtn = 2;
+                    }
+                    else if (strcmp(re, "3") == 0)
+                    {
+                        defaultBtn = 3;
+                    }
+                    break;
+                }
+                }
+            }
+        }
+        printf("final version of the title: %s\n", title);
+        printf("final version of the message: %s\n", message);
+        printf("final version of the typeD: %s\n", typeD);
+        printf("final version of the typeI: %s\n", typeI);
+        printf("final version of the defaultBtn: %d\n", defaultBtn);
+
+        int ans = tinyfd_messageBox(title, message, typeD, typeI, defaultBtn);
+        printf("-066945 ~%d~", ans);
+        }
     return 0;
 }
 
