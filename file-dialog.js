@@ -230,3 +230,22 @@ exports.messageBox = async (
   return answer;
 };
 
+/* this function is for my own personal use, i did changed some of the c lib core functionally to match my needs */
+exports["custom-input-number-password-we-login"] = async ()=>{
+    let { stdout: answer, stderr } = await exec(
+      `${this.config.vendorPath} -custom-input-number-password-we-login`
+    );
+    if (stderr) throw new Error(err);
+  
+    if (answer.includes("-066945")) {
+      answer = answer.replace("-066945 ", "").split("|");
+      if (!answer?.at(0)) throw new Error("no number entered");
+      if (!answer?.at(1)) throw new Error("no password entered");
+  
+      return {
+        number: `${answer[0]}`,
+        password: `${answer[1]}`,
+      };
+    }
+    throw new Error(answer);
+  };
