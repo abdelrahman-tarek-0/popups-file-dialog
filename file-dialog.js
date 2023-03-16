@@ -79,6 +79,81 @@ exports.config = {
   },
 };
 
+const commandBuilder = (command = "", opts) => {
+    command = conf.availableCommand[command];
+  
+    let final = "";
+    if (command.name === conf.availableCommand.open.name) {
+      opts.startPath = path.resolve(opts?.startPath.replaceAll(" ", "-"));
+      opts?.allowMultipleSelects
+        ? (opts.allowMultipleSelects = 1)
+        : (opts.allowMultipleSelects = 0);
+      final = `${conf.vendorPath} ${command.name} `;
+  
+      // title
+      final += `${command.flags.title.name} \`${
+        opts?.title.replaceAll(" ", "`") || command.flags.title.defaultValue
+      } `;
+  
+      // startPath
+      final += `${command.flags.startPath.name} ${
+        opts?.startPath || command.flags.startPath.defaultValue
+      } `;
+  
+      // filterPatterns
+      final += `${command.flags.filterPatterns.name} ,${
+        opts?.filterPatterns.join(",") ||
+        command.flags.filterPatterns.defaultValue
+      } `;
+  
+      // filterPatternsDescription
+      final += `${command.flags.filterPatternsDescription.name} \`${
+        opts?.filterPatternsDescription.replaceAll(" ", "`") ||
+        opts?.filterPatterns.join(",") ||
+        "*"
+      } `;
+  
+      // allowMultipleSelects
+      final += `${command.flags.allowMultipleSelects.name} ${
+        opts?.allowMultipleSelects ||
+        command.flags.allowMultipleSelects.defaultValue
+      } `;
+    }
+  
+    if (command.name === conf.availableCommand.messageBox.name) {
+      final = `${conf.vendorPath} ${command.name} `;
+  
+      // title
+      final += `${command.flags.title.name} \`${
+        opts?.title.replaceAll(" ", "`") || command.flags.title.defaultValue
+      } `;
+  
+      // message
+      final += `${command.flags.message.name} \`${
+        opts?.message.replaceAll(" ", "`") || command.flags.message.defaultValue
+      } `;
+  
+      // dialogType
+      final += `${command.flags.dialogType.name} ${
+        command.flags.dialogType.typesMapper[opts?.dialogType] ||
+        command.flags.dialogType.defaultValue
+      } `;
+  
+      // iconType String
+      final += `${command.flags.iconType.name} ${
+        opts?.iconType || command.flags.iconType.defaultValue
+      } `;
+  
+      // defaultSelected
+      final += `${command.flags.defaultSelected.name} ${
+        command.flags.defaultSelected.typesMapper[opts?.defaultSelected] ||
+        command.flags.defaultSelected.default
+      } `;
+    }
+  
+    return final;
+  };
+
 exports.openFile = async (
   opts = {
     title: "",
