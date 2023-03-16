@@ -80,15 +80,15 @@ exports.config = {
 };
 
 const commandBuilder = (command = "", opts) => {
-    command = conf.availableCommand[command];
+    command = this.config.availableCommand[command];
   
     let final = "";
-    if (command.name === conf.availableCommand.open.name) {
+    if (command.name === this.config.availableCommand.open.name) {
       opts.startPath = path.resolve(opts?.startPath.replaceAll(" ", "-"));
       opts?.allowMultipleSelects
         ? (opts.allowMultipleSelects = 1)
         : (opts.allowMultipleSelects = 0);
-      final = `${conf.vendorPath} ${command.name} `;
+      final = `${this.config.vendorPath} ${command.name} `;
   
       // title
       final += `${command.flags.title.name} \`${
@@ -120,8 +120,8 @@ const commandBuilder = (command = "", opts) => {
       } `;
     }
   
-    if (command.name === conf.availableCommand.messageBox.name) {
-      final = `${conf.vendorPath} ${command.name} `;
+    if (command.name === this.config.availableCommand.messageBox.name) {
+      final = `${this.config.vendorPath} ${command.name} `;
   
       // title
       final += `${command.flags.title.name} \`${
@@ -154,6 +154,17 @@ const commandBuilder = (command = "", opts) => {
     return final;
   };
 
+/**
+ * 
+ * @param {Object} opts 
+ * @param {String} opts.title -description: "the title of the popup" -default: "open"
+ * @param {String} opts.startPath -description: "the start path of the popup" -default: "./"
+ * @param {Array} opts.filterPatterns -description: "the filter patterns of the popup {*.exe,*.txt}" -default: ["*"]
+ * @param {String} opts.filterPatternsDescription -description: "the filter patterns description of the popup {exe files,txt files}" -default: ""
+ * @param {Boolean} opts.allowMultipleSelects -description: "allow multiple selects of files" -default: false
+ * @returns {Array} -description: "the selected files" -ex: ["C:\\Users\\user\\Desktop\\file.exe"]
+ * @throws {Error} -description: "if no files selected"
+ */
 exports.openFile = async (
   opts = {
     title: "",
@@ -177,7 +188,7 @@ exports.openFile = async (
     ?.split("|")
     .map((p) => path.resolve(p));
 
-  if (file.length === 0) throw new Error("no files selected");
+  if (files.length === 0) throw new Error("no files selected");
 
-  return file;
+  return files;
 };
