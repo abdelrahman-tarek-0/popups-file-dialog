@@ -162,7 +162,6 @@ int main(int argc, char *argv[])
                 }
             }
         }
-        // 
         printf("final version of the title: %s\n", title);
         printf("final version of the startPath: %s\n", startPath);
         printf("final version of the filterPatternsDescription: %s\n", filterPatternsDescription);
