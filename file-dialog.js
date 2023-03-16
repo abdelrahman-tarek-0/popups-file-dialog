@@ -2,7 +2,7 @@ const exec = require("util").promisify(require("child_process").exec);
 const path = require("path");
 const fs = require("fs");
 
-const conf = {
+exports.conf = {
     vendorPath: path.join(__dirname,"lib","vendors", "bin",`${process.platform}${process.platform==="win32"?".exe":""}`),
     availableCommand: {
       open: {
