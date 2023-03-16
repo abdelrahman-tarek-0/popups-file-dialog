@@ -1,0 +1,1 @@
+cd ./lib/vendors/src && g++  -Wall main.c tinyfiledialogs.c -o ../bin/win32.exe -lole32 -loleaut32 -lcomdlg32
