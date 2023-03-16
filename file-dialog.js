@@ -194,7 +194,7 @@ exports.openFile = async (
 };
 
 
-
+/** */
 exports.messageBox = async (
     opts = {
       title: "",
@@ -222,11 +222,3 @@ exports.messageBox = async (
       console.log(answer);
     return answer;
   }
-
-  this.messageBox({
-    title: "title",
-    message: "message",
-    dialogType: "yesNo",
-    iconType: "info",
-    defaultSelected: "yes", 
-    }).then((res) => console.log(res));
