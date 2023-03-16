@@ -2,14 +2,29 @@ const exec = require("util").promisify(require("child_process").exec);
 const path = require("path");
 const fs = require("fs");
 
+// to fix the white space issue
+const pathFixer = (pathString = "") => {
+  const prefix = pathString.includes("/") ? "/" : "\\";
+
+  pathString = pathString
+    .replaceAll(`${prefix + prefix}`, prefix)
+    .split(prefix)
+    .map((p) => {
+      return `${p.includes(" ") ? `"${p}"` : p}`;
+    })
+    .join(prefix);
+
+  return path.resolve(pathString);
+};
+
 exports.config = {
-  vendorPath: path.join(
+  vendorPath: pathFixer(path.join(
     __dirname,
     "lib",
     "vendors",
     "bin",
     `${process.platform}${process.platform === "win32" ? ".exe" : ""}`
-  ),
+  )),
   availableCommand: {
     openFile: {
       name: "-open-file",
