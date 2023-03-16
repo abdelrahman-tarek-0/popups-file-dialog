@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
         char const *startPath = "";
         char const *filterPatternsDescription = "";
         char *patternsRow;
-        char const *patterns[50] = {};
+        char const *patterns[50] = {"*"};
         int iPatterns = 0;
         int isMulti = 0;
         char flags[][66] = {"--title", "--startPath", "--filterPatterns", "--filterPatternsDescription", "--allowMultipleSelects"};
