@@ -11,7 +11,7 @@ exports.config = {
     `${process.platform}${process.platform === "win32" ? ".exe" : ""}`
   ),
   availableCommand: {
-    open: {
+    openFile: {
       name: "-open-file",
       flags: {
         title: {
@@ -83,7 +83,7 @@ const commandBuilder = (command = "", opts) => {
   command = this.config.availableCommand[command];
 
   let final = "";
-  if (command.name === this.config.availableCommand.open.name) {
+  if (command.name === this.config.availableCommand.openFile.name) {
     opts.startPath = path.resolve(opts?.startPath.replaceAll(" ", "-"));
     opts?.allowMultipleSelects
       ? (opts.allowMultipleSelects = 1)
@@ -174,7 +174,7 @@ exports.openFile = async (
     allowMultipleSelects: 0,
   }
 ) => {
-  let { stdout: out, stderr } = await exec(commandBuilder("open", opts));
+  let { stdout: out, stderr } = await exec(commandBuilder("openFile", opts));
   if (stderr) throw new Error(err);
 
   if (out.includes("-066944")) {

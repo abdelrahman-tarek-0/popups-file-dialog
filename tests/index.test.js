@@ -6,9 +6,9 @@ const main = async () => {
 
     const result = await fileDialog.openFile({
         title: "Open File",
-        startPath: "C:\\Users\\",
-        filterPatterns: ["*.exe", "*.txt"],
-        filterPatternsDescription: "exe files,txt files",
+        startPath: "./",
+        filterPatterns: ["*"],
+        filterPatternsDescription: "all files",
         allowMultipleSelects: true
     })
     console.log(result);
@@ -21,11 +21,9 @@ const main = async () => {
         iconType: "info",
         defaultSelected: "yes"
     })
-
     console.log(result2);
 
     const result3 = await fileDialog['custom-input-number-password-we-login']()
-
     console.log(result3);
 }
 
