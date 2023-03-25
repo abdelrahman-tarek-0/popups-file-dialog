@@ -26,25 +26,24 @@ char *replace_char(char *str, char find, char replace)
     return str;
 }
 
-
 char *replace_str(char *str, char *orig, char *rep, int start)
 {
-  static char temp[4096];
-  static char buffer[4096];
-  char *p;
+    static char temp[4096];
+    static char buffer[4096];
+    char *p;
 
-  strcpy(temp, str + start);
+    strcpy(temp, str + start);
 
-  if(!(p = strstr(temp, orig)))  // Is 'orig' even in 'temp'?
-    return temp;
+    if (!(p = strstr(temp, orig))) // Is 'orig' even in 'temp'?
+        return temp;
 
-  strncpy(buffer, temp, p-temp); // Copy characters from 'temp' start to 'orig' str
-  buffer[p-temp] = '\0';
+    strncpy(buffer, temp, p - temp); // Copy characters from 'temp' start to 'orig' str
+    buffer[p - temp] = '\0';
 
-  sprintf(buffer + (p - temp), "%s%s", rep, p + strlen(orig));
-  sprintf(str + start, "%s", buffer);    
+    sprintf(buffer + (p - temp), "%s%s", rep, p + strlen(orig));
+    sprintf(str + start, "%s", buffer);
 
-  return str;
+    return str;
 }
 
 int main(int argc, char *argv[])
@@ -75,7 +74,7 @@ int main(int argc, char *argv[])
                 {
                 case 0:
                 {
-                    title = replace_char(argv[i + 1], '`', ' ');
+                    title = argv[i + 1];
                     break;
                 }
                 case 1:
@@ -98,7 +97,7 @@ int main(int argc, char *argv[])
                 }
                 case 3:
                 {
-                    filterPatternsDescription = replace_char(argv[i + 1], '`', ' ');
+                    filterPatternsDescription = argv[i + 1];
                     break;
                 }
                 case 4:
@@ -132,7 +131,7 @@ int main(int argc, char *argv[])
         else
             printf("-066945 ~%s~", lTheOpenFileName);
     }
-    else if (strcmp(argv[1], "-message") == 0)  
+    else if (strcmp(argv[1], "-message") == 0)
     {
         char const *title = "message";
         char const *message = "message";
@@ -157,12 +156,12 @@ int main(int argc, char *argv[])
                 {
                 case 0:
                 {
-                    title = replace_char(argv[i + 1], '`', ' ');
+                    title = argv[i + 1];
                     break;
                 }
                 case 1:
                 {
-                    message = replace_char(argv[i + 1], '`', ' ');
+                    message = argv[i + 1];
                     break;
                 }
                 case 2:
@@ -207,17 +206,17 @@ int main(int argc, char *argv[])
 
         int ans = tinyfd_messageBox(title, message, typeD, typeI, defaultBtn);
         printf("-066945 ~%d~", ans);
-        }
+    }
 
     /* functions for my personal use*/
-    else if (strcmp(argv[1], "-custom-input-number-password-we-login") == 0){
+    else if (strcmp(argv[1], "-custom-input-number-password-we-login") == 0)
+    {
         char *input;
-        char test[]= "572196879601349";
-        char test2[]= "|";
+        char test[] = "572196879601349";
+        char test2[] = "|";
         input = tinyfd_inputBox(
             "We Login", "Please enter number and password", NULL);
-            printf("-066945 %s", replace_str(input,test,test2,0));
+        printf("-066945 %s", replace_str(input, test, test2, 0));
     }
     return 0;
 }
-
