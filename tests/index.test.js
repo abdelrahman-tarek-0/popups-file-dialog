@@ -21,7 +21,7 @@ const main = async () => {
    })
    console.log(result2)
 
-   const result3 = await fileDialog.openFolder({
+   const result3 = await fileDialog.openDirectory({
       title: 'Message Box',
    })
    console.log(result3)

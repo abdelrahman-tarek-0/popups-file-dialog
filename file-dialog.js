@@ -53,7 +53,7 @@ exports.config = {
             },
          },
       },
-      openFolder: {
+      openDirectory: {
          name: '-open-folder',
          flags: {
             title: {
@@ -146,7 +146,7 @@ const commandBuilder = (command = '', opts) => {
       } `
    }
 
-   if (command.name === this.config.availableCommand.openFolder.name) {
+   if (command.name === this.config.availableCommand.openDirectory.name) {
       final = `${this.config.vendorPath} ${command.name} `
 
       // title
@@ -229,8 +229,8 @@ exports.openFile = async (
    return files
 }
 
-exports.openFolder = async (opts = { title: '' }) => {
-   let { stdout: out, stderr } = await exec(commandBuilder('openFolder', opts))
+exports.openDirectory = async (opts = { title: '' }) => {
+   let { stdout: out, stderr } = await exec(commandBuilder('openDirectory', opts))
    if (stderr) throw new Error(stderr)
 
    if (out.includes('-066944')) {

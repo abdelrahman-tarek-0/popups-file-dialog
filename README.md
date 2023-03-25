@@ -82,6 +82,8 @@ main();
   - [fileDialog.openFile(options)](#filedialogopenfileoptions)
     - [_example_ :](#example-)
     - [options](#options)
+  - [fileDialog.openDirectory(options)](#filedialogopendirectoryoptions)
+    - [_example_ :](#example--1)
   - [fileDialog.messageBox(options)](#filedialogmessageboxoptions)
     - [_example_ 1:](#example-1)
     - [_example_ 2:](#example-2)
@@ -178,6 +180,20 @@ expected result:
 
 
 <hr>
+
+## fileDialog.openDirectory(options)
+open folder dialog menu
+
+### _example_ :
+```js
+const result = await fileDialog.openDirectory({
+        title: "select folder please",
+    })
+    console.log(result);
+```
+image on windows 10:
+
+
 
 ## fileDialog.messageBox(options)
 promote message box
