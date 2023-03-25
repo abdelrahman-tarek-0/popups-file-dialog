@@ -195,7 +195,7 @@ exports.openFile = async (
   if (stderr) throw new Error(err);
 
   if (out.includes("-066944")) {
-    const err = files?.slice(files?.indexOf("-066944"))?.split("~")?.at(1);
+    const err = out?.slice(out?.indexOf("-066944"))?.split("~")?.at(1);
     throw new Error(err);
   }
   files = out
