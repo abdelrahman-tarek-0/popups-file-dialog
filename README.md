@@ -57,9 +57,12 @@ const result = await fileDialog.openDirectory({
     console.log(result);
 })();
 ```
-windows: ;
+windows: 
+
 ![select folder windows](https://cdn.discordapp.com/attachments/918435759969685524/1089255653408776253/image.png)
-linux: ;
+
+linux: 
+
 ![select folder linux](https://cdn.discordapp.com/attachments/918435759969685524/1089256007584186390/image.png)
 
 
@@ -131,11 +134,12 @@ main();
     - [options](#options)
   - [fileDialog.openDirectory(options)](#filedialogopendirectoryoptions)
     - [_example_ :](#example--1)
+    - [options](#options-1)
   - [fileDialog.messageBox(options)](#filedialogmessageboxoptions)
     - [_example_ 1:](#example-1)
     - [_example_ 2:](#example-2)
     - [_example_ 3:](#example-3)
-    - [options](#options-1)
+    - [options](#options-2)
 
 # API
 
@@ -154,7 +158,7 @@ config = {
     "lib",
     "vendors",
     "bin",
-    `${process.platform}${process.platform === "win32" ? ".exe" : ""}`
+    `${process.platform}${process.platform === "win32" ? ".exe" : ".app"}`
   ),
   availableCommand: {
     open: {
@@ -245,6 +249,11 @@ expected result:
 ```js
 "C:\\Users\\pc\\Documents\\Adobe"
 ```
+
+### options
+| option | type | default | description         |example|
+| ---    | ---  | ---     | ---                 |---    |
+| title  |string| "open"  | title of the dialog | "Open Folder" |
 
 <hr>
 
