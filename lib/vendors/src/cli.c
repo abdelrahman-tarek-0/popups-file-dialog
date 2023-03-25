@@ -131,6 +131,38 @@ int main(int argc, char *argv[])
         else
             printf("-066945 ~%s~", lTheOpenFileName);
     }
+    else if (strcmp(argv[1], "-open-folder") == 0)
+    {
+        char const *lTheOpenFileName;
+        char const *title = "";
+        char const *startPath = "";
+        char flags[][66] = {"--title"};
+        for (int i = 2; i < argc; i = i + 2)
+        {
+            if (argv[i] && checkStrInArr(flags, argv[i]) != -1)
+            {
+                if (!argv[i + 1])
+                {
+                    return printf("-066944 ~no value for %s detected~", argv[i]);
+                }
+                printf("found the flag %s --> %s in postion %d\n", argv[i], argv[i + 1], i);
+                switch (checkStrInArr(flags, argv[i]))
+                {
+                case 0:
+                {
+                    title = argv[i + 1];
+                    break;
+                }
+                }
+            }
+        }
+        printf("final version of the title: %s\n", title);
+        lTheOpenFileName = tinyfd_selectFolderDialog(title, "");
+        if (!lTheOpenFileName)
+            printf("-066944 ~no folder selected~");
+        else
+            printf("-066945 ~%s~", lTheOpenFileName);
+    }
     else if (strcmp(argv[1], "-message") == 0)
     {
         char const *title = "message";
