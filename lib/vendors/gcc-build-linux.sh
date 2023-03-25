@@ -1,0 +1,1 @@
+gc ./lib/vendors/src/cli.c ./lib/vendors/src/tinyfiledialog/tinyfiledialogs.c -o ./lib/vendors/bin/linux.app
