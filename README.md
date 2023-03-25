@@ -27,6 +27,42 @@ i can really use some help.
 
 <hr>
 
+# demo
+```js
+const fileDialog = require("popups-file-dialog");
+(async () => {
+  const result = await fileDialog.openFile({
+      title: 'Open File',
+      startPath: './',
+      filterPatterns: ['*'],
+      filterPatternsDescription: 'all files',
+      allowMultipleSelects: true,
+})
+  console.log(result);
+})();
+```
+windows: 
+
+![multiple select windows](https://cdn.discordapp.com/attachments/778971669879455774/1085988242773528717/image.png)
+
+linux: 
+
+![multiple select linux](https://cdn.discordapp.com/attachments/918435759969685524/1089256941898956930/image.png)
+
+```js
+(async () => {
+const result = await fileDialog.openDirectory({
+        title: "select folder please",
+    })
+    console.log(result);
+})();
+```
+windows: ;
+![select folder windows](https://cdn.discordapp.com/attachments/918435759969685524/1089255653408776253/image.png)
+linux: ;
+![select folder linux](https://cdn.discordapp.com/attachments/918435759969685524/1089256007584186390/image.png)
+
+
 # Installation
 
 ```bash
@@ -43,6 +79,14 @@ or
 git clone https://github.com/native-toolkit/popups-file-dialog.git
 cd popups-file-dialog
 ```
+
+# Change log
+
+## 1.5.1
+- add support for linux (finally)
+- fixed some bugs (a lot of bugs)
+- added the openDirectory method to select a folder
+- some formatting and refactoring
 
 # Usage
 
@@ -74,7 +118,10 @@ main();
 
 # table of content
 - [Popups File Dialog](#popups-file-dialog)
+- [demo](#demo)
 - [Installation](#installation)
+- [Change log](#change-log)
+  - [1.5.1](#151)
 - [Usage](#usage)
 - [table of content](#table-of-content)
 - [API](#api)
@@ -178,7 +225,6 @@ expected result:
 | filterPatternsDescription | string | "" | filter patterns description of the dialog | "exe files,txt files" |
 | allowMultipleSelects | boolean | false | allow multiple selects of the dialog | true |
 
-
 <hr>
 
 ## fileDialog.openDirectory(options)
@@ -187,13 +233,20 @@ open folder dialog menu
 ### _example_ :
 ```js
 const result = await fileDialog.openDirectory({
-        title: "select folder please",
+        title: "Message Box",
     })
     console.log(result);
 ```
 image on windows 10:
 
+![select folder](https://cdn.discordapp.com/attachments/918435759969685524/1089255653408776253/image.png)
 
+expected result:
+```js
+"C:\\Users\\pc\\Documents\\Adobe"
+```
+
+<hr>
 
 ## fileDialog.messageBox(options)
 promote message box
