@@ -1,1 +1,1 @@
-cd ./lib/vendors/src && g++  -Wall cli.c ./tinyfiledialog/tinyfiledialogs.c -o ../bin/win32.exe -lole32 -loleaut32 -lcomdlg32
+gcc -I"./lib/vendors/src/tinyfiledialog" -L"./lib/vendors/src/tinyfiledialog" ./lib/vendors/src/cli.c -o ./lib/vendors/bin/win32.exe  -loleaut32  -ltinyfiledialogs -lole32 -lcomdlg32
