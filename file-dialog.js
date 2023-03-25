@@ -53,6 +53,15 @@ exports.config = {
             },
          },
       },
+      openFolder: {
+         name: '-open-folder',
+         flags: {
+            title: {
+               name: '--title',
+               defaultValue: 'message',
+            },
+         },
+      },
       messageBox: {
          name: '-message',
          flags: {
