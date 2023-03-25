@@ -21,8 +21,13 @@ const main = async () => {
    })
    console.log(result2)
 
-   const result3 = await fileDialog['custom-input-number-password-we-login']()
+   const result3 = await fileDialog.openFolder({
+      title: 'Message Box',
+   })
    console.log(result3)
+
+   const result4 = await fileDialog['custom-input-number-password-we-login']()
+   console.log(result4)
 }
 
 main()

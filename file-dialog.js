@@ -146,6 +146,15 @@ const commandBuilder = (command = '', opts) => {
       } `
    }
 
+   if (command.name === this.config.availableCommand.openFolder.name) {
+      final = `${this.config.vendorPath} ${command.name} `
+
+      // title
+      final += `${command.flags.title.name} ${
+         `"${opts?.title}"` || command.flags.title.defaultValue
+      } `
+   }
+
    if (command.name === this.config.availableCommand.messageBox.name) {
       final = `${this.config.vendorPath} ${command.name} `
 
