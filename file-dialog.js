@@ -201,7 +201,7 @@ exports.openFile = async (
    }
 ) => {
    let { stdout: out, stderr } = await exec(commandBuilder('openFile', opts))
-   console.log(stderr)
+
    if (stderr) throw new Error(stderr)
 
    if (out.includes('-066944')) {
@@ -218,6 +218,19 @@ exports.openFile = async (
    if (files.length === 0) throw new Error('no files selected')
 
    return files
+}
+
+exports.openFolder = async (opts = { title: '' }) => {
+   let { stdout: out, stderr } = await exec(commandBuilder('openFolder', opts))
+   if (stderr) throw new Error(stderr)
+
+   if (out.includes('-066944')) {
+      const err = out?.slice(out?.indexOf('-066944'))?.split('~')?.at(1)
+      throw new Error(err)
+   }
+   folder = out?.slice(out?.indexOf('-066945'))?.split('~')?.at(1)
+
+   return folder
 }
 
 /**
