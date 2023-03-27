@@ -275,7 +275,6 @@ exports.openFile = async (
    return files
 }
 
-
 /**
  * @param {Object} opts
  * @param {String} opts.title "the title of the popup" default: "message"
@@ -283,7 +282,9 @@ exports.openFile = async (
  * @throws {Error} "if no directory selected"
  */
 exports.openDirectory = async (opts = { title: '' }) => {
-   let { stdout: out, stderr } = await exec(commandBuilder('openDirectory', opts))
+   let { stdout: out, stderr } = await exec(
+      commandBuilder('openDirectory', opts)
+   )
    if (stderr) throw new Error(stderr)
 
    if (out.includes('-066944')) {
@@ -334,13 +335,20 @@ exports.messageBox = async (
 /**
  * @param {Object} opts
  * @param {String} opts.title "the title of the popup" default: "save"
- * @param {String} opts.startPath "the start path of the popup and the savedFile name" default: "./default.txt" 
+ * @param {String} opts.startPath "the start path of the popup and the savedFile name" default: "./default.txt"
  * @param {Array} opts.filterPatterns "the filter patterns of the popup ex:{*.exe,*.txt}" default: ["*"]
  * @param {String} opts.filterPatternsDescription "the filter patterns description of the popup" default: ""
  * @returns {String} "the saved file" ex: "C:\\Users\\user\\Desktop\\default.txt"
  * @throws {Error} "if no file saved"
-*/
-exports.saveFile = async ( opts = { title: '', startPath: '', filterPatterns: [], filterPatternsDescription: '' } ) => {
+ */
+exports.saveFile = async (
+   opts = {
+      title: '',
+      startPath: '',
+      filterPatterns: [],
+      filterPatternsDescription: '',
+   }
+) => {
    let { stdout: out, stderr } = await exec(commandBuilder('saveFile', opts))
    if (stderr) throw new Error(stderr)
 

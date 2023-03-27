@@ -4,25 +4,25 @@
 [![MIT License][license-image]][license-url]
 
 _This is a simple file dialog 0 dependencies for windows, linux and macos.<br>build on library in c language called [tinyfiledialogs](https://github.com/native-toolkit/libtinyfiledialogs)._<br>
-_sence it is build on tinyfiledialogs whitch is build on c, so this lib is super fast_
+_sence it is build in c , so this lib is super fast unlike any library build in python i saw on npm_
+
+now listen, sense node is not natively have a file dialog<br>
+so i build this lib as a wrapper for the (tinyfiledialogs library build in c).<br>
+i made the cli version of the tinyfiledialogs library.<br>
+after that i build this lib as a wrapper for the cli version of the tinyfiledialogs library.<br>
+i did think of making the tinyfiledialogs library as a node addon, but this is too much work.<br>
+so i go for the easy way, and make the cli version of the tinyfiledialogs library.<br>
+<br>
+still have a lot of work to do<br>
+<br>
+i recently build the lib for windows and linux <br>
+i am to lazy to download macos and build the lib for macos<br>
+so if you have a macos and want to help me build the lib for macos<br>
+feel free to contribute to this lib.<br>
+compile and test the lib/vendors/src/cli.c for macos
 
 <br>
-so if this library is build on another library, so wtf is this lib doing?<br>
-<br>
-okay listen, sense node is not natively have a file dialog<br>
-so i build this lib as a wrapper for the (tinyfiledialogs library build in c).<br>
-i worked 2 days straight to make the cli version of the tinyfiledialogs library.<br>
-and i only done 2 methods of the library.<br>
-after that i build this lib as a wrapper for the cli version of the tinyfiledialogs library.<br>
-<br>
-still have a lot of work to do only done 2 functions (open dialog file explorer, and promote message box).<br>
-<br>
-and only build the lib for windows<br>
-i am too lazy to download OS besides windows, so i can't compile and test it on linux and macos.
-but in theory it should work.
-feel free to compile and test it on linux and macos and send me a pull request. with the compiled binaries.
-<br>
-also feel free to contribute to this lib, i am not a pro in c, so i am sure there is a lot of bugs in this lib.<br>
+also feel free to contribute to this lib in general, i am not a pro in c, so i am sure there is a lot of bugs in this lib.<br>
 i can really use some help.
 
 <hr>
@@ -85,6 +85,11 @@ cd popups-file-dialog
 
 # Change log
 
+## 1.6.0
+- added the saveFile method
+- fixed the startPath option for supporting directories with spaces in the name
+- some formatting and refactoring
+
 ## 1.5.1
 - add support for linux (finally)
 - fixed some bugs (a lot of bugs)
@@ -124,6 +129,7 @@ main();
 - [demo](#demo)
 - [Installation](#installation)
 - [Change log](#change-log)
+  - [1.6.0](#160)
   - [1.5.1](#151)
 - [Usage](#usage)
 - [table of content](#table-of-content)
@@ -132,14 +138,17 @@ main();
   - [fileDialog.openFile(options)](#filedialogopenfileoptions)
     - [_example_ :](#example-)
     - [options](#options)
-  - [fileDialog.openDirectory(options)](#filedialogopendirectoryoptions)
+  - [fileDialog.saveFile(options)](#filedialogsavefileoptions)
     - [_example_ :](#example--1)
     - [options](#options-1)
+  - [fileDialog.openDirectory(options)](#filedialogopendirectoryoptions)
+    - [_example_ :](#example--2)
+    - [options](#options-2)
   - [fileDialog.messageBox(options)](#filedialogmessageboxoptions)
     - [_example_ 1:](#example-1)
     - [_example_ 2:](#example-2)
     - [_example_ 3:](#example-3)
-    - [options](#options-2)
+    - [options](#options-3)
 
 # API
 
@@ -228,6 +237,37 @@ expected result:
 | filterPatterns | string[] | ["*"] | filter patterns of the dialog | ["\*.exe", "\*.txt"] |
 | filterPatternsDescription | string | "" | filter patterns description of the dialog | "exe files,txt files" |
 | allowMultipleSelects | boolean | false | allow multiple selects of the dialog | true |
+
+<hr>
+
+## fileDialog.saveFile(options)
+save file dialog menu
+
+### _example_ :
+```js
+const result5 = await fileDialog.saveFile({
+      title: 'Save File',
+      startPath: 'C:\\Users\\pc\\Desktop\\New folder (36)\\test.txt',
+      filterPatterns: ['*'],
+      filterPatternsDescription: "all",
+   })
+   console.log(result5)
+```
+image on windows 10:
+
+![save file](https://cdn.discordapp.com/attachments/778971669879455774/1089731999163502612/image.png)
+
+expected result:
+```js
+"C:\\Users\\pc\\Desktop\\New folder (36)\\test.txt"
+```
+### options
+| option | type | default | description         |example|
+| ---    | ---  | ---     | ---                 |---    |
+| title  |string| "save"  | title of the dialog | "Save File" |
+| startPath | string | path.resolve("./default.txt") | start path and file name | "C:\\Users\\someFile.txt" |
+| filterPatterns | string[] | ["*"] | filter patterns of the dialog | ["\*.exe", "\*.txt"] |
+| filterPatternsDescription | string | "" | filter patterns description of the dialog | "exe files,txt files" |
 
 <hr>
 
