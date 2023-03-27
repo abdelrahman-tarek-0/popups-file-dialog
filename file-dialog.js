@@ -177,7 +177,7 @@ const commandBuilder = (command = '', opts) => {
       // startPath
       final += `${command.flags.startPath.name} "${
          opts?.startPath || command.flags.startPath.defaultValue
-      }/" `
+      }" `
 
       // filterPatterns
       final += `${command.flags.filterPatterns.name} ",${
@@ -331,6 +331,15 @@ exports.messageBox = async (
    return answer
 }
 
+/**
+ * @param {Object} opts
+ * @param {String} opts.title "the title of the popup" default: "save"
+ * @param {String} opts.startPath "the start path of the popup and the savedFile name" default: "./default.txt" 
+ * @param {Array} opts.filterPatterns "the filter patterns of the popup ex:{*.exe,*.txt}" default: ["*"]
+ * @param {String} opts.filterPatternsDescription "the filter patterns description of the popup" default: ""
+ * @returns {String} "the saved file" ex: "C:\\Users\\user\\Desktop\\default.txt"
+ * @throws {Error} "if no file saved"
+*/
 exports.saveFile = async ( opts = { title: '', startPath: '', filterPatterns: [], filterPatternsDescription: '' } ) => {
    let { stdout: out, stderr } = await exec(commandBuilder('saveFile', opts))
    if (stderr) throw new Error(stderr)
