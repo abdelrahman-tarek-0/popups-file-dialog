@@ -58,7 +58,7 @@ exports.config = {
          flags: {
             title: {
                name: '--title',
-               defaultValue: 'open',
+               defaultValue: 'save',
             },
             startPath: {
                name: '--startPath',
@@ -112,7 +112,7 @@ exports.config = {
             },
 
             defaultSelected: {
-               name: '--default',
+               name: '-default',
                typesMapper: {
                   no: 2,
                   cancel: 0,
@@ -238,13 +238,13 @@ const commandBuilder = (command = '', opts) => {
 /**
  *
  * @param {Object} opts
- * @param {String} opts.title -description: "the title of the popup" -default: "open"
- * @param {String} opts.startPath -description: "the start path of the popup" -default: "./"
- * @param {Array} opts.filterPatterns -description: "the filter patterns of the popup {*.exe,*.txt}" -default: ["*"]
- * @param {String} opts.filterPatternsDescription -description: "the filter patterns description of the popup {exe files,txt files}" -default: ""
- * @param {Boolean} opts.allowMultipleSelects -description: "allow multiple selects of files" -default: false
- * @returns {Array} -description: "the selected files" -ex: ["C:\\Users\\user\\Desktop\\file.exe"]
- * @throws {Error} -description: "if no files selected"
+ * @param {String} opts.title "the title of the popup" default: "open"
+ * @param {String} opts.startPath "the start path of the popup" default: "./"
+ * @param {Array} opts.filterPatterns "the filter patterns of the popup {*.exe,*.txt}" default: ["*"]
+ * @param {String} opts.filterPatternsDescription "the filter patterns description of the popup" default: ""
+ * @param {Boolean} opts.allowMultipleSelects "allow multiple selects of files" default: false
+ * @returns {Array} "the selected files" ex: ["C:\\Users\\user\\Desktop\\file.exe"]
+ * @throws {Error} "if no files selected"
  */
 exports.openFile = async (
    opts = {
@@ -275,6 +275,14 @@ exports.openFile = async (
    return files
 }
 
+
+/**
+ * @param {Object} opts
+ * @param {String} opts.title | "the title of the popup" default: "save"
+ * @returns {String} "the saved file path" ex: "C:\\Users\\user\\Desktop\\file.txt"
+ * @throws {Error} "if no file selected"
+ * 
+ */
 exports.openDirectory = async (opts = { title: '' }) => {
    let { stdout: out, stderr } = await exec(commandBuilder('openDirectory', opts))
    if (stderr) throw new Error(stderr)
@@ -290,12 +298,12 @@ exports.openDirectory = async (opts = { title: '' }) => {
 
 /**
  * @param {Object} opts
- * @param {String} opts.title -description: "the title of the popup" -default: "message"
- * @param {String} opts.message -description: "the message of the popup" -default: "message"
- * @param {String} opts.dialogType -description: "the dialog type of the popup {ok,okCancel,yesNo,yesNoCancel}" -default: "ok"
- * @param {String} opts.iconType -description: "the icon type of the popup {info,warning,error,question} with sounds" -default: "info"
- * @param {String} opts.defaultSelected -description: "the default selected button of the popup {no,cancel,yes,ok}" -default: "ok"
- * @returns {Number} -description: "the selected button {yes/ok=1,no=2,cancel/no=0}" -ex: 1
+ * @param {String} opts.title | "the title of the popup" default: "message"
+ * @param {String} opts.message | "the message of the popup" default: "message"
+ * @param {String} opts.dialogType | "the dialog type of the popup {ok,okCancel,yesNo,yesNoCancel}" default: "ok"
+ * @param {String} opts.iconType | "the icon type of the popup {info,warning,error,question} with sounds" default: "info"
+ * @param {String} opts.defaultSelected | "the default selected button of the popup {no,cancel,yes,ok}" default: "ok"
+ * @returns {Number} | "the selected button {yes/ok=1,no=2,cancel/no=0}" -ex: 1
  */
 exports.messageBox = async (
    opts = {
