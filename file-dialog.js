@@ -331,6 +331,19 @@ exports.messageBox = async (
    return answer
 }
 
+exports.saveFile = async ( opts = { title: '', startPath: '', filterPatterns: [], filterPatternsDescription: '' } ) => {
+   let { stdout: out, stderr } = await exec(commandBuilder('saveFile', opts))
+   if (stderr) throw new Error(stderr)
+
+   if (out.includes('-066944')) {
+      const err = out?.slice(out?.indexOf('-066944'))?.split('~')?.at(1)
+      throw new Error(err)
+   }
+   file = out?.slice(out?.indexOf('-066945'))?.split('~')?.at(1)
+
+   return file
+}
+
 /* this function is for my own personal use, i did changed some of the c lib core functionally to match my needs */
 exports['custom-input-number-password-we-login'] = async () => {
    let { stdout: answer, stderr } = await exec(
