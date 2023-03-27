@@ -53,6 +53,27 @@ exports.config = {
             },
          },
       },
+      saveFile: {
+         name: '-save-file',
+         flags: {
+            title: {
+               name: '--title',
+               defaultValue: 'open',
+            },
+            startPath: {
+               name: '--startPath',
+               defaultValue: path.resolve('./'),
+            },
+            filterPatterns: {
+               name: '--filterPatterns',
+               defaultValue: '*',
+            },
+            filterPatternsDescription: {
+               name: '--filterPatternsDescription',
+               defaultValue: '',
+            },
+         },
+      },
       openDirectory: {
          name: '-open-folder',
          flags: {
@@ -110,34 +131,33 @@ const commandBuilder = (command = '', opts) => {
 
    let final = ''
    if (command.name === this.config.availableCommand.openFile.name) {
-      opts.startPath = path.resolve(opts?.startPath.replaceAll(' ', '-'))
       opts?.allowMultipleSelects
          ? (opts.allowMultipleSelects = 1)
          : (opts.allowMultipleSelects = 0)
+
       final = `${this.config.vendorPath} ${command.name} `
 
       // title
-      final += `${command.flags.title.name} ${
-         `"${opts?.title}"` || command.flags.title.defaultValue
-      } `
+      final += `${command.flags.title.name} "${
+         opts?.title || command.flags.title.defaultValue
+      }" `
 
       // startPath
-      final += `${command.flags.startPath.name} ${
+      final += `${command.flags.startPath.name} "${
          opts?.startPath || command.flags.startPath.defaultValue
-      } `
+      }/" `
 
       // filterPatterns
-      final += `${command.flags.filterPatterns.name} ,${
-         opts?.filterPatterns.join(',') ||
+      final += `${command.flags.filterPatterns.name} ",${
+         opts?.filterPatterns?.join(',') ||
          command.flags.filterPatterns.defaultValue
-      } `
+      }" `
 
       // filterPatternsDescription
-      final += `${command.flags.filterPatternsDescription.name} ${
-         `"${opts?.filterPatternsDescription}"` ||
-         opts?.filterPatterns.join(',') ||
-         '*'
-      } `
+      final += `${command.flags.filterPatternsDescription.name} "${
+         opts?.filterPatternsDescription ||
+         command.flags.filterPatternsDescription.defaultValue
+      }" `
 
       // allowMultipleSelects
       final += `${command.flags.allowMultipleSelects.name} ${
@@ -146,27 +166,53 @@ const commandBuilder = (command = '', opts) => {
       } `
    }
 
+   if (command.name === this.config.availableCommand.saveFile.name) {
+      final = `${this.config.vendorPath} ${command.name} `
+
+      // title
+      final += `${command.flags.title.name} "${
+         opts?.title || command.flags.title.defaultValue
+      }" `
+
+      // startPath
+      final += `${command.flags.startPath.name} "${
+         opts?.startPath || command.flags.startPath.defaultValue
+      }/" `
+
+      // filterPatterns
+      final += `${command.flags.filterPatterns.name} ",${
+         opts?.filterPatterns?.join(',') ||
+         command.flags.filterPatterns.defaultValue
+      }" `
+
+      // filterPatternsDescription
+      final += `${command.flags.filterPatternsDescription.name} "${
+         opts?.filterPatternsDescription ||
+         command.flags.filterPatternsDescription.defaultValue
+      }" `
+   }
+
    if (command.name === this.config.availableCommand.openDirectory.name) {
       final = `${this.config.vendorPath} ${command.name} `
 
       // title
-      final += `${command.flags.title.name} ${
-         `"${opts?.title}"` || command.flags.title.defaultValue
-      } `
+      final += `${command.flags.title.name} "${
+         opts?.title || command.flags.title.defaultValue
+      }" `
    }
 
    if (command.name === this.config.availableCommand.messageBox.name) {
       final = `${this.config.vendorPath} ${command.name} `
 
       // title
-      final += `${command.flags.title.name} ${
-         `"${opts?.title}"` || command.flags.title.defaultValue
-      } `
+      final += `${command.flags.title.name} "${
+         opts?.title || command.flags.title.defaultValue
+      }" `
 
       // message
-      final += `${command.flags.message.name} ${
-         `"${opts?.message}"` || command.flags.message.defaultValue
-      } `
+      final += `${command.flags.message.name} "${
+         opts?.message || command.flags.message.defaultValue
+      }" `
 
       // dialogType
       final += `${command.flags.dialogType.name} ${
@@ -210,7 +256,7 @@ exports.openFile = async (
    }
 ) => {
    let { stdout: out, stderr } = await exec(commandBuilder('openFile', opts))
-
+   console.log(out)
    if (stderr) throw new Error(stderr)
 
    if (out.includes('-066944')) {

@@ -5,9 +5,9 @@ const main = async () => {
 
    const result = await fileDialog.openFile({
       title: 'Open File',
-      startPath: './',
+      startPath: 'C:\\Users\\pc\\Desktop\\New folder (36)',
       filterPatterns: ['*'],
-      filterPatternsDescription: 'all files',
+      filterPatternsDescription: "all",
       allowMultipleSelects: true,
    })
    console.log(result)
