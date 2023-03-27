@@ -131,6 +131,77 @@ int main(int argc, char *argv[])
         else
             printf("-066945 ~%s~", lTheOpenFileName);
     }
+    if (strcmp(argv[1], "-save-file") == 0)
+    {
+        char const *lTheSaveFileName;
+        char const *title = "";
+        char const *startPath = "";
+        char const *filterPatternsDescription = "";
+        char *patternsRow;
+        char const *patterns[50] = {"*"};
+        int iPatterns = 0;
+        char flags[][66] = {"--title", "--startPath", "--filterPatterns", "--filterPatternsDescription"};
+
+        for (int i = 2; i < argc; i = i + 2)
+        {
+            if (argv[i] && checkStrInArr(flags, argv[i]) != -1)
+            {
+                if (!argv[i + 1])
+                {
+                    return printf("-066944 ~no value for %s detected~", argv[i]);
+                }
+                printf("found the flag %s --> %s in postion %d\n", argv[i], argv[i + 1], i);
+                switch (checkStrInArr(flags, argv[i]))
+                {
+                case 0:
+                {
+                    title = argv[i + 1];
+                    break;
+                }
+                case 1:
+                {
+                    startPath = argv[i + 1];
+                    break;
+                }
+                case 2:
+                {
+                    patternsRow = argv[i + 1];
+                    char *token = strtok(patternsRow, ",");
+                    patterns[iPatterns] = token;
+                    while (token != NULL)
+                    {
+                        iPatterns++;
+                        token = strtok(NULL, ",");
+                        patterns[iPatterns] = token;
+                    }
+                    break;
+                }
+                case 3:
+                {
+                    filterPatternsDescription = argv[i + 1];
+                    break;
+                }
+                }
+            }
+        }
+        printf("final version of the title: %s\n", title);
+        printf("final version of the startPath: %s\n", startPath);
+        printf("final version of the filterPatternsDescription: %s\n", filterPatternsDescription);
+
+        printf("patterns count is %d with patterns:  ", iPatterns);
+        for (int i = 0; i < iPatterns; i++)
+        {
+            printf("%s ", patterns[i]);
+        }
+        printf("\n");
+
+        lTheSaveFileName = tinyfd_saveFileDialog(title, startPath, iPatterns, patterns, filterPatternsDescription);
+
+        if (!lTheSaveFileName)
+            printf("-066944 ~error saving file name~");
+        else
+            printf("-066945 ~%s~", lTheSaveFileName);
+    }
     else if (strcmp(argv[1], "-open-folder") == 0)
     {
         char const *lTheOpenFileName;
