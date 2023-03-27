@@ -28,6 +28,14 @@ const main = async () => {
 
    const result4 = await fileDialog['custom-input-number-password-we-login']()
    console.log(result4)
+   
+   const result5 = await fileDialog.saveFile({
+      title: 'Save File',
+      startPath: 'C:\\Users\\pc\\Desktop\\New folder (36)\\test.txt',
+      filterPatterns: ['*'],
+      filterPatternsDescription: "all",
+   })
+   console.log(result5)
 }
 
 main()
