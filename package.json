@@ -1,6 +1,6 @@
 {
   "name": "popups-file-dialog",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "popups file dialog build in c on top of lib called tinyfiledialogs and ported for node",
   "main": "file-dialog.js",
   "scripts": {
