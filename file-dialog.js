@@ -256,7 +256,6 @@ exports.openFile = async (
    }
 ) => {
    let { stdout: out, stderr } = await exec(commandBuilder('openFile', opts))
-   console.log(out)
    if (stderr) throw new Error(stderr)
 
    if (out.includes('-066944')) {
