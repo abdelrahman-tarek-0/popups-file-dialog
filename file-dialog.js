@@ -235,6 +235,13 @@ const commandBuilder = (command = '', opts) => {
    return final
 }
 
+exports.NoSelectedFileError = class extends Error {
+   constructor(message, options) {
+      super(message, options)
+      this.name = "NoSelectedFileError"
+   }
+}
+
 /**
  *
  * @param {Object} opts
@@ -244,7 +251,7 @@ const commandBuilder = (command = '', opts) => {
  * @param {String} opts.filterPatternsDescription "the filter patterns description of the popup" default: ""
  * @param {Boolean} opts.allowMultipleSelects "allow multiple selects of files" default: false
  * @returns {Array} "the selected files" ex: ["C:\\Users\\user\\Desktop\\file.exe"]
- * @throws {Error} "if no files selected"
+ * @throws {NoSelectedFileError} "if no files selected"
  */
 exports.openFile = async (
    opts = {
@@ -269,7 +276,7 @@ exports.openFile = async (
       ?.split('|')
       .map((p) => path.resolve(p))
 
-   if (files.length === 0) throw new Error('no files selected')
+   if (files.length === 0) throw new this.NoSelectedFileError('no files selected')
 
    return files
 }
