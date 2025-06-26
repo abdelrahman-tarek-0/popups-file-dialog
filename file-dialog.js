@@ -251,7 +251,7 @@ exports.NoSelectedFileError = class extends Error {
  * @param {String} opts.filterPatternsDescription "the filter patterns description of the popup" default: ""
  * @param {Boolean} opts.allowMultipleSelects "allow multiple selects of files" default: false
  * @returns {Array} "the selected files" ex: ["C:\\Users\\user\\Desktop\\file.exe"]
- * @throws {Error} "if no files selected"
+ * @throws {NoSelectedFileError} "if no files selected"
  */
 exports.openFile = async (
    opts = {
