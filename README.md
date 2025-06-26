@@ -43,27 +43,27 @@ const fileDialog = require("popups-file-dialog");
 ```
 windows: 
 
-![multiple select windows](https://cdn.discordapp.com/attachments/778971669879455774/1085988242773528717/image.png)
+![multiple select windows](./docs/mult-select-win.png)
 
 linux: 
 
-![multiple select linux](https://cdn.discordapp.com/attachments/918435759969685524/1089256941898956930/image.png)
+![multiple select linux](./docs/mult-select-linux.png)
 
 ```js
 (async () => {
 const result = await fileDialog.openDirectory({
-        title: "select folder please",
+        title: "Message Box",
     })
     console.log(result);
 })();
 ```
 windows: 
 
-![select folder windows](https://cdn.discordapp.com/attachments/918435759969685524/1089255653408776253/image.png)
+![select folder windows](./docs/directory-select-win.png)
 
 linux: 
 
-![select folder linux](https://cdn.discordapp.com/attachments/918435759969685524/1089256007584186390/image.png)
+![select folder linux](./docs/directory-select-linux.png)
 
 
 # Installation
@@ -218,7 +218,7 @@ const result = await fileDialog.openFile({
 ```
 image on windows 10:
 
-![multiple select](https://cdn.discordapp.com/attachments/778971669879455774/1085988242773528717/image.png)
+![multiple select](./docs/mult-select-win.png)
 
 expected result:
 ```js
@@ -255,7 +255,7 @@ const result5 = await fileDialog.saveFile({
 ```
 image on windows 10:
 
-![save file](https://cdn.discordapp.com/attachments/778971669879455774/1089731999163502612/image.png)
+![save file](./docs/save-file-win.png)
 
 expected result:
 ```js
@@ -283,7 +283,7 @@ const result = await fileDialog.openDirectory({
 ```
 image on windows 10:
 
-![select folder](https://cdn.discordapp.com/attachments/918435759969685524/1089255653408776253/image.png)
+![select folder](./docs/directory-select-win.png)
 
 expected result:
 ```js
@@ -313,7 +313,7 @@ const result = await fileDialog.messageBox({
 ```
 image on windows 10:
 
-![message box](https://cdn.discordapp.com/attachments/778971669879455774/1085990463812677732/image.png)
+![message box](./docs/message-box-win.png)
 
 expected result:
 ```js
