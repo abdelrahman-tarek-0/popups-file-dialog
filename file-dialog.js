@@ -235,6 +235,13 @@ const commandBuilder = (command = '', opts) => {
    return final
 }
 
+exports.NoSelectedFileError = class extends Error {
+   constructor(message, options) {
+      super(message, options)
+      this.name = "NoSelectedFileError"
+   }
+}
+
 /**
  *
  * @param {Object} opts
@@ -269,7 +276,7 @@ exports.openFile = async (
       ?.split('|')
       .map((p) => path.resolve(p))
 
-   if (files.length === 0) throw new Error('no files selected')
+   if (files.length === 0) throw new this.NoSelectedFileError('no files selected')
 
    return files
 }
