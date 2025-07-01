@@ -6,11 +6,11 @@
 [![NPM downloads][npm-downloads-image]][npm-downloads-url]
 [![MIT License][license-image]][license-url]
 
-_This is a simple file dialog library with 0 dependencies for Windows, Linux and macOS built on a C library called [tinyfiledialogs](tinyfiledialogs)._  
+_This is a simple file dialog library with 0 dependencies for Windows, Linux and macOS built on a C library called [tinyfiledialogs][tinyfiledialogs]._  
 _Since it is built in C, this library is really fast, unlike any Python-based library I have seen on NPM._
 
-Now listen, since Node.JS cannot natively open file dialogs,  I created the CLI version of [tinyfiledialogs](tinyfiledialogs). After that, I built this library as a wrapper for it.  
-I did consider making the [tinyfiledialogs](tinyfiledialogs) library a node addon, but that would have been too much work.  
+Now listen, since Node.JS cannot natively open file dialogs,  I created the CLI version of [tinyfiledialogs][tinyfiledialogs]. After that, I built this library as a wrapper for it.  
+I did consider making the [tinyfiledialogs][tinyfiledialogs] library a node addon, but that would have been too much work.  
 So I went the easy way, and made the CLP version of the library.
 
 I recently built the lib for Windows and Linux.  
