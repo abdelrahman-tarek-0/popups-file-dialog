@@ -1,0 +1,11 @@
+{
+  "source": {
+    "include": "./",
+    "includePattern": ".+\\.js$",
+    "exclude": ["node_modules", "lib", "tests"]
+  },
+  "opts": { 
+    "destination": "./documentation",
+    "template": "themes/minami"
+  }
+}

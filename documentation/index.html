@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSavedFileError.html">NoSavedFileError</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSelectedDirectoryError.html">NoSelectedDirectoryError</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSelectedFileError.html">NoSelectedFileError</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#config">config</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#messageBox">messageBox</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openDirectory">openDirectory</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openFile">openFile</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#saveFile">saveFile</a></span></li>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>Popups File Dialog</h1>
+<h2>Presentation</h2>
+<p><a href="https://npmjs.org/package/popups-file-dialog"><img src="https://img.shields.io/npm/v/popups-file-dialog.svg?style=flat" alt="NPM version"></a>
+<a href="https://npmcharts.com/compare/popups-file-dialog?minimal=true"><img src="https://img.shields.io/npm/dm/popups-file-dialog.svg?style=flat" alt="NPM downloads"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-ISC-blue.svg?style=flat" alt="MIT License"></a></p>
+<p><em>This is a simple file dialog library with 0 dependencies for Windows, Linux and macOS built on a C library called <a href="tinyfiledialogs">tinyfiledialogs</a>.</em><br>
+<em>Since it is built in C, this library is really fast, unlike any Python-based library I have seen on NPM.</em></p>
+<p>Now listen, since Node.JS cannot natively open file dialogs,  I created the CLI version of <a href="tinyfiledialogs">tinyfiledialogs</a>. After that, I built this library as a wrapper for it.<br>
+I did consider making the <a href="tinyfiledialogs">tinyfiledialogs</a> library a node addon, but that would have been too much work.<br>
+So I went the easy way, and made the CLP version of the library.</p>
+<p>I recently built the lib for Windows and Linux.<br>
+I haven’t had the chance to download macOS and build the library for it yet.<br>
+So, if you have a computer running this OS and want to help me, feel free to contribute by compiling and testing the lib/vendors/src/cli.c on macOS.</p>
+<p>There’s still a lot of work to do, so feel free to contribute to this lib in general, I can really use some help.<br>
+I am not a pro in C, so I am sure there are a lot of bugs in this lib.</p>
+<hr>
+<h2>Demo</h2>
+<pre class="prettyprint source lang-js"><code>const fileDialog = require(&quot;popups-file-dialog&quot;);
+(async () => {
+  const result = await fileDialog.openFile({
+      title: 'Open File',
+      startPath: './',
+      filterPatterns: ['*'],
+      filterPatternsDescription: 'all files',
+      allowMultipleSelects: true,
+})
+  console.log(result);
+})();
+</code></pre>
+<p>windows:</p>
+<img alt="multiple select windows" src="./docs/mult-select-win.png" width="100%"/>
+<p>linux:</p>
+<p><img src="./docs/mult-select-linux.png" alt="multiple select linux"></p>
+<pre class="prettyprint source lang-js"><code>(async () => {
+const result = await fileDialog.openDirectory({
+        title: &quot;Message Box&quot;,
+    })
+    console.log(result);
+})();
+</code></pre>
+<p>windows:</p>
+<p><img src="./docs/directory-select-win.png" alt="select folder windows"></p>
+<p>linux:</p>
+<p><img src="./docs/directory-select-linux.png" alt="select folder linux"></p>
+<h2>Installation</h2>
+<pre class="prettyprint source lang-bash"><code>npm install popups-file-dialog
+</code></pre>
+<pre class="prettyprint source lang-bash"><code>yarn add popups-file-dialog
+</code></pre>
+<pre class="prettyprint source lang-bash"><code>git clone https://github.com/native-toolkit/popups-file-dialog.git
+cd popups-file-dialog
+</code></pre>
+<h2>Change log</h2>
+<h3>1.6.0</h3>
+<ul>
+<li>added the saveFile method</li>
+<li>fixed the startPath option for supporting directories with spaces in the name</li>
+<li>some formatting and refactoring</li>
+</ul>
+<h3>1.5.1</h3>
+<ul>
+<li>add support for linux (finally)</li>
+<li>fixed some bugs (a lot of bugs)</li>
+<li>added the openDirectory method to select a folder</li>
+<li>some formatting and refactoring</li>
+</ul>
+<h2>Usage</h2>
+<pre class="prettyprint source lang-js"><code>const fileDialog = require(&quot;../file-dialog&quot;);
+
+const main = async () => {
+  console.log(fileDialog.config.vendorPath); // check for the path of the vendor folder if the os is supported
+  const result = await fileDialog.openFile({
+    title: &quot;Open File&quot;,
+    startPath: &quot;C:\\Users\\&quot;,
+    filterPatterns: [&quot;*.exe&quot;, &quot;*.txt&quot;],
+    filterPatternsDescription: &quot;exe files,txt files&quot;,
+    allowMultipleSelects: true,
+  });
+  console.log(result);
+
+  const result2 = await fileDialog.messageBox({
+    title: &quot;Message Box&quot;,
+    message: &quot;Hello World&quot;,
+    dialogType: &quot;yesNoCancel&quot;,
+    iconType: &quot;info&quot;,
+    defaultSelected: &quot;yes&quot;,
+  });
+  console.log(result2);
+};
+main();
+</code></pre>
+<h2>table of content</h2>
+<ul>
+<li><a href="#popups-file-dialog">Popups File Dialog</a>
+<ul>
+<li><a href="#presentation">Presentation</a></li>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#change-log">Change log</a>
+<ul>
+<li><a href="#160">1.6.0</a></li>
+<li><a href="#151">1.5.1</a></li>
+</ul>
+</li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#table-of-content">table of content</a></li>
+<li><a href="#api">API</a>
+<ul>
+<li><a href="#filedialogconfig">fileDialog.config</a></li>
+<li><a href="#filedialogopenfileoptions">fileDialog.openFile(options)</a>
+<ul>
+<li><a href="#example-"><em>example</em> :</a></li>
+<li><a href="#options">options</a></li>
+</ul>
+</li>
+<li><a href="#filedialogsavefileoptions">fileDialog.saveFile(options)</a>
+<ul>
+<li><a href="#example--1"><em>example</em> :</a></li>
+<li><a href="#options-1">options</a></li>
+</ul>
+</li>
+<li><a href="#filedialogopendirectoryoptions">fileDialog.openDirectory(options)</a>
+<ul>
+<li><a href="#example--2"><em>example</em> :</a></li>
+<li><a href="#options-2">options</a></li>
+</ul>
+</li>
+<li><a href="#filedialogmessageboxoptions">fileDialog.messageBox(options)</a>
+<ul>
+<li><a href="#example-1"><em>example</em> 1:</a></li>
+<li><a href="#example-2"><em>example</em> 2:</a></li>
+<li><a href="#example-3"><em>example</em> 3:</a></li>
+<li><a href="#options-3">options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>API</h2>
+<h3>fileDialog.config</h3>
+<p>super important, and big object, that contain
+all the config of the lib
+all the flags with the commands
+and the path of the vendor folder
+part of it:</p>
+<pre class="prettyprint source lang-js"><code>config = {
+  vendorPath: path.join(
+    __dirname,
+    &quot;lib&quot;,
+    &quot;vendors&quot;,
+    &quot;bin&quot;,
+    `${process.platform}${process.platform === &quot;win32&quot; ? &quot;.exe&quot; : &quot;.app&quot;}`
+  ),
+  availableCommand: {
+    open: {
+      name: &quot;-open-file&quot;,
+      flags: {
+        title: {
+          name: &quot;--title&quot;,
+          defaultValue: &quot;open&quot;,
+        },
+        startPath: {
+          name: &quot;--startPath&quot;,
+          defaultValue: path.resolve(&quot;./&quot;),
+        },
+        filterPatterns: {
+          name: &quot;--filterPatterns&quot;,
+          defaultValue: &quot;*&quot;,
+        },
+        filterPatternsDescription: {
+          name: &quot;--filterPatternsDescription&quot;,
+          defaultValue: &quot;&quot;,
+        },
+        allowMultipleSelects: {
+          name: &quot;--allowMultipleSelects&quot;,
+          defaultValue: &quot;0&quot;,
+        },
+      },
+    },
+  },
+};
+</code></pre>
+<hr>
+<h3>fileDialog.openFile(options)</h3>
+<p>open file dialog menu</p>
+<h4><em>example</em> :</h4>
+<p>multiple select example:</p>
+<pre class="prettyprint source lang-js"><code>const result = await fileDialog.openFile({
+        title: &quot;Open File&quot;,
+        startPath: &quot;./&quot;,
+        filterPatterns: [&quot;*&quot;],
+        filterPatternsDescription: &quot;all files&quot;,
+        allowMultipleSelects: true
+    })
+    console.log(result);
+
+</code></pre>
+<p>image on windows 10:</p>
+<img alt="multiple select windows" src="./docs/mult-select-win.png" width="100%"/>
+<p>expected result:</p>
+<pre class="prettyprint source lang-js"><code>[
+  'C:\\Users\\pc\\Desktop\\workingdir\\projects\\popups-file-dialog\\.gitignore',
+  'C:\\Users\\pc\\Desktop\\workingdir\\projects\\popups-file-dialog\\.npmignore',
+  'C:\\Users\\pc\\Desktop\\workingdir\\projects\\popups-file-dialog\\file-dialog.js'
+]
+</code></pre>
+<h4>options</h4>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>type</th>
+<th>default</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>&quot;open&quot;</td>
+<td>title of the dialog</td>
+<td>&quot;Open File&quot;</td>
+</tr>
+<tr>
+<td>startPath</td>
+<td>string</td>
+<td>path.resolve(&quot;./&quot;)</td>
+<td>start path of the dialog</td>
+<td>&quot;C:\Users\&quot;</td>
+</tr>
+<tr>
+<td>filterPatterns</td>
+<td>string[]</td>
+<td>[&quot;*&quot;]</td>
+<td>filter patterns of the dialog</td>
+<td>[&quot;*.exe&quot;, &quot;*.txt&quot;]</td>
+</tr>
+<tr>
+<td>filterPatternsDescription</td>
+<td>string</td>
+<td>&quot;&quot;</td>
+<td>filter patterns description of the dialog</td>
+<td>&quot;exe files,txt files&quot;</td>
+</tr>
+<tr>
+<td>allowMultipleSelects</td>
+<td>boolean</td>
+<td>false</td>
+<td>allow multiple selects of the dialog</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>fileDialog.saveFile(options)</h3>
+<p>save file dialog menu</p>
+<h4><em>example</em> :</h4>
+<pre class="prettyprint source lang-js"><code>const result5 = await fileDialog.saveFile({
+      title: 'Save File',
+      startPath: 'C:\\Users\\pc\\Desktop\\New folder (36)\\test.txt',
+      filterPatterns: ['*'],
+      filterPatternsDescription: &quot;all&quot;,
+   })
+   console.log(result5)
+</code></pre>
+<p>image on windows 10:</p>
+<img alt="save file" src="./docs/save-file-win.png" width="100%" />
+<p>expected result:</p>
+<pre class="prettyprint source lang-js"><code>&quot;C:\\Users\\pc\\Desktop\\New folder (36)\\test.txt&quot;
+</code></pre>
+<h4>options</h4>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>type</th>
+<th>default</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>&quot;save&quot;</td>
+<td>title of the dialog</td>
+<td>&quot;Save File&quot;</td>
+</tr>
+<tr>
+<td>startPath</td>
+<td>string</td>
+<td>path.resolve(&quot;./default.txt&quot;)</td>
+<td>start path and file name</td>
+<td>&quot;C:\Users\someFile.txt&quot;</td>
+</tr>
+<tr>
+<td>filterPatterns</td>
+<td>string[]</td>
+<td>[&quot;*&quot;]</td>
+<td>filter patterns of the dialog</td>
+<td>[&quot;*.exe&quot;, &quot;*.txt&quot;]</td>
+</tr>
+<tr>
+<td>filterPatternsDescription</td>
+<td>string</td>
+<td>&quot;&quot;</td>
+<td>filter patterns description of the dialog</td>
+<td>&quot;exe files,txt files&quot;</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>fileDialog.openDirectory(options)</h3>
+<p>open folder dialog menu</p>
+<h4><em>example</em> :</h4>
+<pre class="prettyprint source lang-js"><code>const result = await fileDialog.openDirectory({
+        title: &quot;Message Box&quot;,
+    })
+    console.log(result);
+</code></pre>
+<p>image on windows 10:</p>
+<p><img src="./docs/directory-select-win.png" alt="select folder"></p>
+<p>expected result:</p>
+<pre class="prettyprint source lang-js"><code>&quot;C:\\Users\\pc\\Documents\\Adobe&quot;
+</code></pre>
+<h4>options</h4>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>type</th>
+<th>default</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>&quot;open&quot;</td>
+<td>title of the dialog</td>
+<td>&quot;Open Folder&quot;</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>fileDialog.messageBox(options)</h3>
+<p>promote message box</p>
+<h4><em>example</em> 1:</h4>
+<pre class="prettyprint source lang-js"><code>const result = await fileDialog.messageBox({
+        title: &quot;Message Box&quot;,
+        message: &quot;Hello World&quot;,
+        dialogType: &quot;yesNoCancel&quot;,
+        iconType: &quot;info&quot;,
+        defaultSelected: &quot;yes&quot;
+    })
+    console.log(result);
+</code></pre>
+<p>image on windows 10:</p>
+<p><img src="./docs/message-box-win.png" alt="message box"></p>
+<p>expected result:</p>
+<pre class="prettyprint source lang-js"><code>yes -> 1
+no -> 2
+cancel -> 0
+</code></pre>
+<h4><em>example</em> 2:</h4>
+<pre class="prettyprint source lang-js"><code>const result = await fileDialog.messageBox({
+        title: &quot;Message Box&quot;,
+        message: &quot;Hello World&quot;,
+        dialogType: &quot;okCancel&quot;,
+        iconType: &quot;info&quot;,
+        defaultSelected: &quot;ok&quot;
+    })
+    console.log(result);
+</code></pre>
+<p>expected result:</p>
+<pre class="prettyprint source lang-js"><code>ok -> 1
+cancel -> 0
+</code></pre>
+<h4><em>example</em> 3:</h4>
+<pre class="prettyprint source lang-js"><code>const result = await fileDialog.messageBox({
+        title: &quot;Message Box&quot;,
+        message: &quot;Hello World&quot;,
+        dialogType: &quot;yesNo&quot;,
+        iconType: &quot;info&quot;,
+        defaultSelected: &quot;ok&quot;
+    })
+    console.log(result);
+</code></pre>
+<p>expected result:</p>
+<pre class="prettyprint source lang-js"><code>yes -> 1
+no -> 0
+</code></pre>
+<h4>options</h4>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>type</th>
+<th>default</th>
+<th>description</th>
+<th>example</th>
+<th>available options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>&quot;message&quot;</td>
+<td>title of the dialog</td>
+<td>&quot;Message Box&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>&quot;message&quot;</td>
+<td>message of the dialog</td>
+<td>&quot;Hello World&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>dialogType</td>
+<td>string</td>
+<td>&quot;ok&quot;</td>
+<td>dialog type of the dialog</td>
+<td>&quot;okCancel&quot;</td>
+<td>&quot;ok&quot;, &quot;okCancel&quot;, &quot;yesNo&quot;, &quot;yesNoCancel&quot;</td>
+</tr>
+<tr>
+<td>iconType</td>
+<td>string</td>
+<td>&quot;info&quot;</td>
+<td>icon type of the dialog</td>
+<td>&quot;info&quot;</td>
+<td>&quot;info&quot;, &quot;warning&quot;, &quot;error&quot;,&quot;question&quot;</td>
+</tr>
+<tr>
+<td>defaultSelected</td>
+<td>string</td>
+<td>&quot;ok&quot;</td>
+<td>default selected of the dialog</td>
+<td>&quot;ok&quot;</td>
+<td>&quot;ok&quot;, &quot;cancel&quot;, &quot;yes&quot;, &quot;no&quot;</td>
+</tr>
+</tbody>
+</table>
+<hr></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Tue Jul 01 2025 10:19:11 GMT+0200 (heure d’été d’Europe centrale) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

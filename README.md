@@ -1,33 +1,29 @@
 # Popups File Dialog
+
+## Presentation
+
 [![NPM version][npm-version-image]][npm-url]
 [![NPM downloads][npm-downloads-image]][npm-downloads-url]
 [![MIT License][license-image]][license-url]
 
-_This is a simple file dialog 0 dependencies for windows, linux and macos.<br>build on library in c language called [tinyfiledialogs](https://github.com/native-toolkit/libtinyfiledialogs)._<br>
-_sence it is build in c , so this lib is super fast unlike any library build in python i saw on npm_
+_This is a simple file dialog library with 0 dependencies for Windows, Linux and macOS built on a C library called [tinyfiledialogs](tinyfiledialogs)._  
+_Since it is built in C, this library is really fast, unlike any Python-based library I have seen on NPM._
 
-now listen, sense node is not natively have a file dialog<br>
-so i build this lib as a wrapper for the (tinyfiledialogs library build in c).<br>
-i made the cli version of the tinyfiledialogs library.<br>
-after that i build this lib as a wrapper for the cli version of the tinyfiledialogs library.<br>
-i did think of making the tinyfiledialogs library as a node addon, but this is too much work.<br>
-so i go for the easy way, and make the cli version of the tinyfiledialogs library.<br>
-<br>
-still have a lot of work to do<br>
-<br>
-i recently build the lib for windows and linux <br>
-i am to lazy to download macos and build the lib for macos<br>
-so if you have a macos and want to help me build the lib for macos<br>
-feel free to contribute to this lib.<br>
-compile and test the lib/vendors/src/cli.c for macos
+Now listen, since Node.JS cannot natively open file dialogs,  I created the CLI version of [tinyfiledialogs](tinyfiledialogs). After that, I built this library as a wrapper for it.  
+I did consider making the [tinyfiledialogs](tinyfiledialogs) library a node addon, but that would have been too much work.  
+So I went the easy way, and made the CLP version of the library.
 
-<br>
-also feel free to contribute to this lib in general, i am not a pro in c, so i am sure there is a lot of bugs in this lib.<br>
-i can really use some help.
+I recently built the lib for Windows and Linux.  
+I haven’t had the chance to download macOS and build the library for it yet.  
+So, if you have a computer running this OS and want to help me, feel free to contribute by compiling and testing the lib/vendors/src/cli.c on macOS.
 
-<hr>
+There’s still a lot of work to do, so feel free to contribute to this lib in general, I can really use some help.  
+I am not a pro in C, so I am sure there are a lot of bugs in this lib.
 
-# demo
+---
+
+## Demo
+
 ```js
 const fileDialog = require("popups-file-dialog");
 (async () => {
@@ -43,7 +39,7 @@ const fileDialog = require("popups-file-dialog");
 ```
 windows: 
 
-![multiple select windows](./docs/mult-select-win.png)
+<img alt="multiple select windows" src="./docs/mult-select-win.png" width="100%"/>
 
 linux: 
 
@@ -66,7 +62,8 @@ linux:
 ![select folder linux](./docs/directory-select-linux.png)
 
 
-# Installation
+## Installation
+
 
 ```bash
 npm install popups-file-dialog
@@ -76,27 +73,25 @@ npm install popups-file-dialog
 yarn add popups-file-dialog
 ```
 
-or
-
 ```bash
 git clone https://github.com/native-toolkit/popups-file-dialog.git
 cd popups-file-dialog
 ```
 
-# Change log
+## Change log
 
-## 1.6.0
+### 1.6.0
 - added the saveFile method
 - fixed the startPath option for supporting directories with spaces in the name
 - some formatting and refactoring
 
-## 1.5.1
+### 1.5.1
 - add support for linux (finally)
 - fixed some bugs (a lot of bugs)
 - added the openDirectory method to select a folder
 - some formatting and refactoring
 
-# Usage
+## Usage
 
 ```js
 const fileDialog = require("../file-dialog");
@@ -124,35 +119,36 @@ const main = async () => {
 main();
 ```
 
-# table of content
+## table of content
 - [Popups File Dialog](#popups-file-dialog)
-- [demo](#demo)
-- [Installation](#installation)
-- [Change log](#change-log)
-  - [1.6.0](#160)
-  - [1.5.1](#151)
-- [Usage](#usage)
-- [table of content](#table-of-content)
-- [API](#api)
-  - [fileDialog.config](#filedialogconfig)
-  - [fileDialog.openFile(options)](#filedialogopenfileoptions)
-    - [_example_ :](#example-)
-    - [options](#options)
-  - [fileDialog.saveFile(options)](#filedialogsavefileoptions)
-    - [_example_ :](#example--1)
-    - [options](#options-1)
-  - [fileDialog.openDirectory(options)](#filedialogopendirectoryoptions)
-    - [_example_ :](#example--2)
-    - [options](#options-2)
-  - [fileDialog.messageBox(options)](#filedialogmessageboxoptions)
-    - [_example_ 1:](#example-1)
-    - [_example_ 2:](#example-2)
-    - [_example_ 3:](#example-3)
-    - [options](#options-3)
+  - [Presentation](#presentation)
+  - [Demo](#demo)
+  - [Installation](#installation)
+  - [Change log](#change-log)
+    - [1.6.0](#160)
+    - [1.5.1](#151)
+  - [Usage](#usage)
+  - [table of content](#table-of-content)
+  - [API](#api)
+    - [fileDialog.config](#filedialogconfig)
+    - [fileDialog.openFile(options)](#filedialogopenfileoptions)
+      - [_example_ :](#example-)
+      - [options](#options)
+    - [fileDialog.saveFile(options)](#filedialogsavefileoptions)
+      - [_example_ :](#example--1)
+      - [options](#options-1)
+    - [fileDialog.openDirectory(options)](#filedialogopendirectoryoptions)
+      - [_example_ :](#example--2)
+      - [options](#options-2)
+    - [fileDialog.messageBox(options)](#filedialogmessageboxoptions)
+      - [_example_ 1:](#example-1)
+      - [_example_ 2:](#example-2)
+      - [_example_ 3:](#example-3)
+      - [options](#options-3)
 
-# API
+## API
 
-## fileDialog.config
+### fileDialog.config
 
 super important, and big object, that contain
 all the config of the lib
@@ -200,10 +196,10 @@ config = {
 ```
 <hr>
 
-## fileDialog.openFile(options)
+### fileDialog.openFile(options)
 open file dialog menu
 
-### _example_ :
+#### _example_ :
 multiple select example:
 ```js
 const result = await fileDialog.openFile({
@@ -218,7 +214,7 @@ const result = await fileDialog.openFile({
 ```
 image on windows 10:
 
-![multiple select](./docs/mult-select-win.png)
+<img alt="multiple select windows" src="./docs/mult-select-win.png" width="100%"/>
 
 expected result:
 ```js
@@ -229,7 +225,7 @@ expected result:
 ]
 ```
 
-### options
+#### options
 | option | type | default | description         |example|
 | ---    | ---  | ---     | ---                 |---    |
 | title  |string| "open"  | title of the dialog | "Open File" |
@@ -240,10 +236,10 @@ expected result:
 
 <hr>
 
-## fileDialog.saveFile(options)
+### fileDialog.saveFile(options)
 save file dialog menu
 
-### _example_ :
+#### _example_ :
 ```js
 const result5 = await fileDialog.saveFile({
       title: 'Save File',
@@ -255,13 +251,13 @@ const result5 = await fileDialog.saveFile({
 ```
 image on windows 10:
 
-![save file](./docs/save-file-win.png)
+<img alt="save file" src="./docs/save-file-win.png" width="100%" />
 
 expected result:
 ```js
 "C:\\Users\\pc\\Desktop\\New folder (36)\\test.txt"
 ```
-### options
+#### options
 | option | type | default | description         |example|
 | ---    | ---  | ---     | ---                 |---    |
 | title  |string| "save"  | title of the dialog | "Save File" |
@@ -271,10 +267,10 @@ expected result:
 
 <hr>
 
-## fileDialog.openDirectory(options)
+### fileDialog.openDirectory(options)
 open folder dialog menu
 
-### _example_ :
+#### _example_ :
 ```js
 const result = await fileDialog.openDirectory({
         title: "Message Box",
@@ -290,17 +286,17 @@ expected result:
 "C:\\Users\\pc\\Documents\\Adobe"
 ```
 
-### options
+#### options
 | option | type | default | description         |example|
 | ---    | ---  | ---     | ---                 |---    |
 | title  |string| "open"  | title of the dialog | "Open Folder" |
 
 <hr>
 
-## fileDialog.messageBox(options)
+### fileDialog.messageBox(options)
 promote message box
 
-### _example_ 1:
+#### _example_ 1:
 ```js
 const result = await fileDialog.messageBox({
         title: "Message Box",
@@ -322,7 +318,7 @@ no -> 2
 cancel -> 0
 ```
 
-### _example_ 2:
+#### _example_ 2:
 ```js
 const result = await fileDialog.messageBox({
         title: "Message Box",
@@ -338,7 +334,7 @@ expected result:
 ok -> 1
 cancel -> 0
 ```
-### _example_ 3:
+#### _example_ 3:
 
 ```js
 const result = await fileDialog.messageBox({
@@ -356,7 +352,7 @@ yes -> 1
 no -> 0
 ```
 
-### options
+#### options
 | option | type | default | description         |example| available options |
 | ---    | ---  | ---     | ---                 |---    | --- |
 | title  |string| "message"  | title of the dialog | "Message Box" | |
@@ -375,8 +371,4 @@ no -> 0
 
 [npm-downloads-image]: https://img.shields.io/npm/dm/popups-file-dialog.svg?style=flat
 [npm-downloads-url]: https://npmcharts.com/compare/popups-file-dialog?minimal=true
-
-
-
-
-
+[tinyfiledialogs]: https://github.com/native-toolkit/libtinyfiledialogs
