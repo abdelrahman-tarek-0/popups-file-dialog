@@ -22,6 +22,19 @@ I am not a pro in C, so I am sure there are a lot of bugs in this lib.
 
 ---
 
+## Table of content
+- [Popups File Dialog](#popups-file-dialog)
+  - [Presentation](#presentation)
+  - [Table of content](#table-of-content)
+  - [Demo](#demo)
+  - [Installation](#installation)
+  - [Change log](#change-log)
+    - [1.6.0](#160)
+    - [1.5.1](#151)
+  - [API](#api)
+  - [Usage](#usage)
+
+
 ## Demo
 
 ```js
@@ -91,6 +104,12 @@ cd popups-file-dialog
 - added the openDirectory method to select a folder
 - some formatting and refactoring
 
+
+
+## API
+
+View the documentation on [https://eliotttak.github.io/popups-file-dialog](https://eliotttak.github.io/popups-file-dialog)
+
 ## Usage
 
 ```js
@@ -119,36 +138,7 @@ const main = async () => {
 main();
 ```
 
-## table of content
-- [Popups File Dialog](#popups-file-dialog)
-  - [Presentation](#presentation)
-  - [Demo](#demo)
-  - [Installation](#installation)
-  - [Change log](#change-log)
-    - [1.6.0](#160)
-    - [1.5.1](#151)
-  - [Usage](#usage)
-  - [table of content](#table-of-content)
-  - [API](#api)
-    - [fileDialog.config](#filedialogconfig)
-    - [fileDialog.openFile(options)](#filedialogopenfileoptions)
-      - [_example_ :](#example-)
-      - [options](#options)
-    - [fileDialog.saveFile(options)](#filedialogsavefileoptions)
-      - [_example_ :](#example--1)
-      - [options](#options-1)
-    - [fileDialog.openDirectory(options)](#filedialogopendirectoryoptions)
-      - [_example_ :](#example--2)
-      - [options](#options-2)
-    - [fileDialog.messageBox(options)](#filedialogmessageboxoptions)
-      - [_example_ 1:](#example-1)
-      - [_example_ 2:](#example-2)
-      - [_example_ 3:](#example-3)
-      - [options](#options-3)
-
-## API
-
-### fileDialog.config
+<!-- ### fileDialog.config
 
 super important, and big object, that contain
 all the config of the lib
@@ -194,7 +184,7 @@ config = {
   },
 };
 ```
-<hr>
+---
 
 ### fileDialog.openFile(options)
 open file dialog menu
@@ -234,7 +224,7 @@ expected result:
 | filterPatternsDescription | string | "" | filter patterns description of the dialog | "exe files,txt files" |
 | allowMultipleSelects | boolean | false | allow multiple selects of the dialog | true |
 
-<hr>
+---
 
 ### fileDialog.saveFile(options)
 save file dialog menu
@@ -265,7 +255,7 @@ expected result:
 | filterPatterns | string[] | ["*"] | filter patterns of the dialog | ["\*.exe", "\*.txt"] |
 | filterPatternsDescription | string | "" | filter patterns description of the dialog | "exe files,txt files" |
 
-<hr>
+---
 
 ### fileDialog.openDirectory(options)
 open folder dialog menu
@@ -291,7 +281,7 @@ expected result:
 | ---    | ---  | ---     | ---                 |---    |
 | title  |string| "open"  | title of the dialog | "Open Folder" |
 
-<hr>
+---
 
 ### fileDialog.messageBox(options)
 promote message box
@@ -359,9 +349,9 @@ no -> 0
 | message | string | "message" | message of the dialog | "Hello World" | |
 | dialogType | string | "ok" | dialog type of the dialog | "okCancel" | "ok", "okCancel", "yesNo", "yesNoCancel" |
 | iconType | string | "info" | icon type of the dialog | "info" | "info", "warning", "error","question" |
-| defaultSelected | string | "ok" | default selected of the dialog | "ok" | "ok", "cancel", "yes", "no" |
+| defaultSelected | string | "ok" | default selected of the dialog | "ok" | "ok", "cancel", "yes", "no" | -->
 
-<hr>
+---
 
 [license-image]: https://img.shields.io/badge/license-ISC-blue.svg?style=flat
 [license-url]: LICENSE
