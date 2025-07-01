@@ -4,18 +4,33 @@
   "description": "popups file dialog build in c on top of lib called tinyfiledialogs and ported for node",
   "main": "file-dialog.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jsdoc": ".\\node_modules\\.bin\\jsdoc --configure .\\jsdoc.json --readme .\\README.md && cp -r docs\\ documentation\\docs\\"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abdelrahman-tarek-0/popups-file-dialog.git"
   },
-  "keywords": ["tinyfiledialogs","file-dialog","dialogs","popups","popups-menu","popups-file-dialog","win","windows","linux","winApi"],
+  "keywords": [
+    "tinyfiledialogs",
+    "file-dialog",
+    "dialogs",
+    "popups",
+    "popups-menu",
+    "popups-file-dialog",
+    "win",
+    "windows",
+    "linux",
+    "winApi"
+  ],
   "author": "https://github.com/abdelrahman-tarek-0",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/abdelrahman-tarek-0/popups-file-dialog/issues"
   },
-  "homepage": "https://github.com/abdelrahman-tarek-0/popups-file-dialog#readme"
-
+  "homepage": "https://github.com/abdelrahman-tarek-0/popups-file-dialog#readme",
+  "devDependencies": {
+    "jsdoc": "^4.0.4",
+    "taffydb": "^2.7.3"
+  }
 }

@@ -1,4 +1,45 @@
-const exec = require('util').promisify(require('child_process').exec)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>file-dialog.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSavedFileError.html">NoSavedFileError</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSelectedDirectoryError.html">NoSelectedDirectoryError</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSelectedFileError.html">NoSelectedFileError</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#config">config</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#messageBox">messageBox</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openDirectory">openDirectory</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openFile">openFile</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#saveFile">saveFile</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">file-dialog.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const exec = require('util').promisify(require('child_process').exec)
 const path = require('path')
 const fs = require('fs')
 
@@ -21,10 +62,10 @@ const pathFixer = (pathString = '') => {
  * @typedef {Object} Config
  * @prop {string} vendorPath The path to the library executable. It is set according to the operating system.
  * @prop {Object} availableCommand The available commands and their attributes.
- * @prop {AvailableCommandItem} availableCommand.openFile The <code>open file</code> command and its attributes.
- * @prop {AvailableCommandItem} availableCommand.saveFile The <code>save file</code> command and its attributes.
- * @prop {AvailableCommandItem} availableCommand.openDirectory The <code>open directory</code> command and its attributes.
- * @prop {AvailableCommandItem} availableCommand.messageBox The <code>message box</code> command and its attributes.
+ * @prop {AvailableCommandItem} availableCommand.openFile The &lt;code>open file&lt;/code> command and its attributes.
+ * @prop {AvailableCommandItem} availableCommand.saveFile The &lt;code>save file&lt;/code> command and its attributes.
+ * @prop {AvailableCommandItem} availableCommand.openDirectory The &lt;code>open directory&lt;/code> command and its attributes.
+ * @prop {AvailableCommandItem} availableCommand.messageBox The &lt;code>message box&lt;/code> command and its attributes.
  */
 
 /**
@@ -48,16 +89,16 @@ const pathFixer = (pathString = '') => {
 
 /**
  * @typedef {Object} AvailableCommandItemFlagsItem
- * @prop {string} name The name of the flag. For exemple, <code>--title</code>.
+ * @prop {string} name The name of the flag. For exemple, &lt;code>--title&lt;/code>.
  * @prop {string} defaultValue The default value.
- * @prop {Object<string, string>} [typesMapper] An object that contains all the possible values of the flag.
- * @prop {Array<string>} [types] An array that contains all the possible values of the flag.
+ * @prop {Object&lt;string, string>} [typesMapper] An object that contains all the possible values of the flag.
+ * @prop {Array&lt;string>} [types] An array that contains all the possible values of the flag.
  */
 
 /**
  * @typedef {Object} AvailableCommandItemFlagsDefaultDelected
- * @prop {string} name The name of the flag. For exemple, <code>--title</code>.
- * @prop {Object<string, number>} [typesMapper] An object that contains all the possible values of the flag.
+ * @prop {string} name The name of the flag. For exemple, &lt;code>--title&lt;/code>.
+ * @prop {Object&lt;string, number>} [typesMapper] An object that contains all the possible values of the flag.
  * @prop {number} default The default value.
  */
 
@@ -292,7 +333,7 @@ exports.NoSelectedFileError = class extends Error {
    /**
     * Create a [NoSelectedFileError]{@linkcode NoSelectedFileError} instance.
     * @param {string} message The message of the error.
-    * @param {ErrorOptions} options The error options. These are the same as those for the basic [<code>Error</code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
+    * @param {ErrorOptions} options The error options. These are the same as those for the basic [&lt;code>Error&lt;/code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
     */
    constructor(message, options) {
       super(message, options)
@@ -305,10 +346,10 @@ exports.NoSelectedFileError = class extends Error {
  * @param {Object} [opts] The options of the window.
  * @param {string} [opts.title="open"] The title of the popup
  * @param {string} [opts.startPath="./"] The start path of the popup
- * @param {Array<string>} [opts.filterPatterns=["*"]] The filter patterns of the popup. For example, <code>["*.exe", "*.txt"]</code>
- * @param {string} [opts.filterPatternsDescription=""] The filter patterns description of the popup, separated by commas; for example, <code>"Executable files,Text files"</code>
+ * @param {Array&lt;string>} [opts.filterPatterns=["*"]] The filter patterns of the popup. For example, &lt;code>["*.exe", "*.txt"]&lt;/code>
+ * @param {string} [opts.filterPatternsDescription=""] The filter patterns description of the popup, separated by commas; for example, &lt;code>"Executable files,Text files"&lt;/code>
  * @param {boolean} [opts.allowMultipleSelects=false] The boolean that define if the window allow multiple selects of files
- * @returns {Promise<Array<string>>} A promise representing an array that contains the paths to the selected files. For example, <code>["C:\\Users\\user\\Desktop\\file.exe"]</code>
+ * @returns {Promise&lt;Array&lt;string>>} A promise representing an array that contains the paths to the selected files. For example, &lt;code>["C:\\Users\\user\\Desktop\\file.exe"]&lt;/code>
  * @throws {NoSelectedFileError} If the user didn't select any file.
  */
 exports.openFile = async (
@@ -348,7 +389,7 @@ exports.NoSelectedDirectoryError = class extends Error {
    /**
     * Create a [NoSelectedDirectoryError]{@linkcode NoSelectedDirectoryError} instance.
     * @param {string} message The message of the error.
-    * @param {ErrorOptions} options The error options. These are the same as those for the basic [<code>Error</code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
+    * @param {ErrorOptions} options The error options. These are the same as those for the basic [&lt;code>Error&lt;/code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
     */
    constructor(message, options) {
       super(message, options)
@@ -361,7 +402,7 @@ exports.NoSelectedDirectoryError = class extends Error {
  * @async
  * @param {Object} [opts] The options of the window.
  * @param {string} [opts.title="message"] The title of the popup.
- * @returns {Promise<string>} A Promise representing the path to the selected directory. For example, <code>"C:\\Users\\user\\Desktop\\"</code>
+ * @returns {Promise&lt;string>} A Promise representing the path to the selected directory. For example, &lt;code>"C:\\Users\\user\\Desktop\\"&lt;/code>
  * @throws {NoSelectedDirectoryError} If the user didn't select any directory.
  */
 exports.openDirectory = async (opts = { title: '' }) => {
@@ -388,7 +429,7 @@ exports.openDirectory = async (opts = { title: '' }) => {
  * @param {"ok"|"okCancel"|"yesNo"|"yesNoCancel"} [opts.dialogType="ok"] The dialog type of the popup
  * @param {"info"|"warning"|"error"|"question"} [opts.iconType="info"] The icon and sound types of the popup
  * @param {"ok"|"cancel"|"yes"|"no"} [opts.defaultSelected="ok"] The default selected button of the popup
- * @return {Promise<0|1|2>} A Promise representing the selected button number: <style type="text/css">#messagebox-return-table {border-collapse: collapse;} #messagebox-return-table td {border: 1px solid black; padding: 5px;} #messagebox-return-table tr:first-child td:first-child {border:none;}</style><br/><table id="messagebox-return-table"><tr><td><td><code>0</code><td><code>1</code><td><code>2</code><tr><td><code>"ok"</code><td><td>Ok<td><tr><td><code>"okCancel"</code><td>Cancel<td>Ok<td><tr><td><code>"yesNo"</code><td>No<td>Yes<td><tr><td><code>"yesNoCancel"</code><td>Cancel<td>Yes<td>No</table>
+ * @return {Promise&lt;0|1|2>} A Promise representing the selected button number: &lt;style type="text/css">#messagebox-return-table {border-collapse: collapse;} #messagebox-return-table td {border: 1px solid black; padding: 5px;} #messagebox-return-table tr:first-child td:first-child {border:none;}&lt;/style>&lt;br/>&lt;table id="messagebox-return-table">&lt;tr>&lt;td>&lt;td>&lt;code>0&lt;/code>&lt;td>&lt;code>1&lt;/code>&lt;td>&lt;code>2&lt;/code>&lt;tr>&lt;td>&lt;code>"ok"&lt;/code>&lt;td>&lt;td>Ok&lt;td>&lt;tr>&lt;td>&lt;code>"okCancel"&lt;/code>&lt;td>Cancel&lt;td>Ok&lt;td>&lt;tr>&lt;td>&lt;code>"yesNo"&lt;/code>&lt;td>No&lt;td>Yes&lt;td>&lt;tr>&lt;td>&lt;code>"yesNoCancel"&lt;/code>&lt;td>Cancel&lt;td>Yes&lt;td>No&lt;/table>
  */
 exports.messageBox = async (
    opts = {
@@ -426,7 +467,7 @@ exports.NoSavedFileError = class extends Error {
    /**
     * Create a [NoSavedFileError]{@linkcode NoSavedFileError} instance.
     * @param {string} message The message of the error.
-    * @param {ErrorOptions} options The error options. These are the same as those for the basic [<code>Error</code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
+    * @param {ErrorOptions} options The error options. These are the same as those for the basic [&lt;code>Error&lt;/code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
     */
    constructor(message, options) {
       super(message, options)
@@ -440,9 +481,9 @@ exports.NoSavedFileError = class extends Error {
  * @param {Object} opts The options of the window.
  * @param {string} [opts.title="save"] The title of the popup.
  * @param {string} [opts.startPath="./default.txt"] The start path of the popup and the saved file name
- * @param {Array<string>} [opts.filterPatterns=["*"]] The filter patterns of the popup. For example, <code>["*.exe", "*.txt"]</code>
- * @param {string} [opts.filterPatternsDescription=""] The filter patterns description of the popup, separated by commas; for example, <code>"Executable files,Text files"</code>
- * @returns {Promise<string>} A Promise representing the path to the saved file. Example: <code>"C:\\Users\\user\\Desktop\\default.txt"</code>
+ * @param {Array&lt;string>} [opts.filterPatterns=["*"]] The filter patterns of the popup. For example, &lt;code>["*.exe", "*.txt"]&lt;/code>
+ * @param {string} [opts.filterPatternsDescription=""] The filter patterns description of the popup, separated by commas; for example, &lt;code>"Executable files,Text files"&lt;/code>
+ * @returns {Promise&lt;string>} A Promise representing the path to the saved file. Example: &lt;code>"C:\\Users\\user\\Desktop\\default.txt"&lt;/code>
  * @throws {NoSavedFileError} If the user cancelled and didn't select any file to save in.
  */
 exports.saveFile = async (
@@ -465,3 +506,22 @@ exports.saveFile = async (
    return file
 }
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Tue Jul 01 2025 11:13:07 GMT+0200 (heure d’été d’Europe centrale) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
