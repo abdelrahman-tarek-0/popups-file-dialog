@@ -22,16 +22,23 @@ I am not a pro in C, so I am sure there are a lot of bugs in this lib.
 
 ---
 
+## <span id="api">API</span>
+
+View the documentation on [https://abdelrahman-tarek-0.github.io/popups-file-dialog](https://abdelrahman-tarek-0.github.io/popups-file-dialog/index.html)
+
+~ thanks for [Eliott Takvorian](https://github.com/eliotttak) for creating the documentation for this lib.
+
 ## <span id="table-of-content">Table of content</span>
 - [Popups File Dialog](#popups-file-dialog)
   - [Presentation](#presentation)
+  - [API](#api)
   - [Table of content](#table-of-content)
   - [Demo](#demo)
   - [Installation](#installation)
   - [Change log](#change-log)
+    - [1.7.3](#173)
     - [1.6.0](#160)
     - [1.5.1](#151)
-  - [API](#api)
   - [Usage](#usage)
 
 
@@ -93,6 +100,10 @@ cd popups-file-dialog
 
 ## <span id="change-log">Change log</span>
 
+### <span id="173">1.7.3</span>
+- Improved error handling with new custom error classes: `NoSelectedFileError`, `NoSelectedDirectoryError`, and `NoSavedFileError`
+- New and improved API documentation generated with JSDoc (shout-out to [Eliott Takvorian](https://github.com/eliotttak))
+
 ### <span id="160">1.6.0</span>
 - added the saveFile method
 - fixed the startPath option for supporting directories with spaces in the name
@@ -104,11 +115,6 @@ cd popups-file-dialog
 - added the openDirectory method to select a folder
 - some formatting and refactoring
 
-
-
-## <span id="api">API</span>
-
-View the documentation on [https://eliotttak.github.io/popups-file-dialog](https://eliotttak.github.io/popups-file-dialog)
 
 ## <span id="usage">Usage</span>
 
