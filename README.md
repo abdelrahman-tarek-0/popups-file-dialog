@@ -1,6 +1,6 @@
-# Popups File Dialog
+# <span id="popups-file-dialog">Popups File Dialog</span>
 
-## Presentation
+## <span id="presentation">Presentation</span>
 
 [![NPM version][npm-version-image]][npm-url]
 [![NPM downloads][npm-downloads-image]][npm-downloads-url]
@@ -22,7 +22,7 @@ I am not a pro in C, so I am sure there are a lot of bugs in this lib.
 
 ---
 
-## Table of content
+## <span id="table-of-content">Table of content</span>
 - [Popups File Dialog](#popups-file-dialog)
   - [Presentation](#presentation)
   - [Table of content](#table-of-content)
@@ -35,7 +35,7 @@ I am not a pro in C, so I am sure there are a lot of bugs in this lib.
   - [Usage](#usage)
 
 
-## Demo
+## <span id="demo">Demo</span>
 
 ```js
 const fileDialog = require("popups-file-dialog");
@@ -75,7 +75,7 @@ linux:
 ![select folder linux](./docs/directory-select-linux.png)
 
 
-## Installation
+## <span id="installation">Installation</span>
 
 
 ```bash
@@ -91,14 +91,14 @@ git clone https://github.com/native-toolkit/popups-file-dialog.git
 cd popups-file-dialog
 ```
 
-## Change log
+## <span id="change-log">Change log</span>
 
-### 1.6.0
+### <span id="160">1.6.0</span>
 - added the saveFile method
 - fixed the startPath option for supporting directories with spaces in the name
 - some formatting and refactoring
 
-### 1.5.1
+### <span id="151">1.5.1</span>
 - add support for linux (finally)
 - fixed some bugs (a lot of bugs)
 - added the openDirectory method to select a folder
@@ -106,11 +106,11 @@ cd popups-file-dialog
 
 
 
-## API
+## <span id="api">API</span>
 
 View the documentation on [https://eliotttak.github.io/popups-file-dialog](https://eliotttak.github.io/popups-file-dialog)
 
-## Usage
+## <span id="usage">Usage</span>
 
 ```js
 const fileDialog = require("../file-dialog");
