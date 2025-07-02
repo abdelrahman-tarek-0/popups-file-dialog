@@ -2,7 +2,6 @@
 
 const exec = require('util').promisify(require('child_process').exec)
 const path = require('path')
-// const fs = require('fs')
 
 // to fix the white space issue
 const pathFixer = (pathString = '') => {
