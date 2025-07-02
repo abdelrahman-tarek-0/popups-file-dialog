@@ -1,4 +1,6 @@
 node_module
 lib/vendors/src
 lib/vendors/gcc-build-win.bat
-tests
+documentation
+.github
+themes
