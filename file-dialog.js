@@ -312,6 +312,25 @@ exports.NoSelectedFileError = class extends Error {
  * @param {boolean|number} [opts.allowMultipleSelects=false] The boolean that define if the window allow multiple selects of files
  * @returns {Promise<Array<string>>} A promise representing an array that contains the paths to the selected files. For example, <code>["C:\\Users\\user\\Desktop\\file.exe"]</code>
  * @throws {NoSelectedFileError} If the user didn't select any file.
+ * @async
+ * @example
+ * // With asynchronous method
+ * openFile({
+ *     title: 'Open several files',
+ *     filterPatterns: ["*.txt"],
+ *     allowMultipleSelects: true
+ * }).then(data => console.log(data.join(', '))) // E.g. C:\Users\user\Desktop\file.txt, C:\Users\user\Desktop\other-file.txt
+ * 
+ * // With synchronous method 
+ * (async () => {
+ *     const data = await openFile({
+ *         title: 'Open several files',
+ *         filterPatterns: ["*.txt"],
+ *         allowMultipleSelects: true
+ *     })
+ * 
+ *     console.log(data.join(', ')) // E.g. C:\Users\user\Desktop\file.txt, C:\Users\user\Desktop\other-file.txt
+ * })
  */
 exports.openFile = async (
    opts = {
@@ -338,7 +357,7 @@ exports.openFile = async (
 
    if (files?.length === 0) throw new this.NoSelectedFileError('no files selected')
 
-   return files || [""]
+   return files || []
 }
 
 /**
@@ -365,6 +384,21 @@ exports.NoSelectedDirectoryError = class extends Error {
  * @param {string} [opts.title="message"] The title of the popup.
  * @returns {Promise<string>} A Promise representing the path to the selected directory. For example, <code>"C:\\Users\\user\\Desktop\\"</code>
  * @throws {NoSelectedDirectoryError} If the user didn't select any directory.
+ * @example
+ * // With asynchronous method
+ * openDirectory({
+ *     title: 'Open a directory',
+ * }).then(data => console.log(data)) // E.g. C:\Users\user\Desktop\
+ * 
+ * // With synchronous method 
+ * (async () => {
+ *     const data = await openDirectory({
+ *         title: 'Open a directory',
+ *     })
+ * 
+ *     console.log(data) // E.g. C:\Users\user\Desktop\
+ * })
+
  */
 exports.openDirectory = async (opts = { title: '' }) => {
    let { stdout: out, stderr } = await exec(
@@ -391,6 +425,26 @@ exports.openDirectory = async (opts = { title: '' }) => {
  * @param {"info"|"warning"|"error"|"question"|""} [opts.iconType="info"] The icon and sound types of the popup
  * @param {"ok"|"cancel"|"yes"|"no"|0} [opts.defaultSelected="ok"] The default selected button of the popup
  * @return {Promise<0|1|2>} A Promise representing the selected button number: <style type="text/css">#messagebox-return-table {border-collapse: collapse;} #messagebox-return-table td {border: 1px solid black; padding: 5px;} #messagebox-return-table tr:first-child td:first-child {border:none;}</style><br/><table id="messagebox-return-table"><tr><td><td><code>0</code><td><code>1</code><td><code>2</code><tr><td><code>"ok"</code><td><td>Ok<td><tr><td><code>"okCancel"</code><td>Cancel<td>Ok<td><tr><td><code>"yesNo"</code><td>No<td>Yes<td><tr><td><code>"yesNoCancel"</code><td>Cancel<td>Yes<td>No</table>
+ * @example
+ * // With asynchronous method
+ * messageBox({
+ *     title: 'Shutdown',
+ *     message: 'Do you want to continue?',
+ *     dialogType: 'yesNo',
+ *     defaultSelected: 'no'
+ * }).then(data => console.log(data)) // E.g. 1 if the user clicked Yes
+ * 
+ * // With synchronous method 
+ * (async () => {
+ *     const data = await messageBox({
+ *         title: 'Shutdown',
+ *         message: 'Do you want to continue?',
+ *         dialogType: 'yesNo',
+ *         defaultSelected: 'no'
+ *     })
+ *     console.log(data) // E.g. 1 if the user clicked Yes
+ * })
+
  */
 exports.messageBox = async (
    opts = {
@@ -437,9 +491,9 @@ exports.NoSavedFileError = class extends Error {
    }
 }
 
-
 /**
  * Open a "Save file" window.
+ * @async
  * @param {Object} opts The options of the window.
  * @param {string} [opts.title="save"] The title of the popup.
  * @param {string} [opts.startPath="./default.txt"] The start path of the popup and the saved file name
@@ -447,6 +501,24 @@ exports.NoSavedFileError = class extends Error {
  * @param {string} [opts.filterPatternsDescription=""] The filter patterns description of the popup, separated by commas; for example, <code>"Executable files,Text files"</code>
  * @returns {Promise<string>} A Promise representing the path to the saved file. Example: <code>"C:\\Users\\user\\Desktop\\default.txt"</code>
  * @throws {NoSavedFileError} If the user cancelled and didn't select any file to save in.
+ * @example
+ * // With asynchronous method
+ * saveFile({
+ *     title: 'Save into a file',
+ *     filterPatterns: ["*.txt"],
+ *     allowMultipleSelects: true
+ * }).then(data => console.log(data)) // E.g. C:\Users\user\Desktop\default.txt
+ * 
+ * // With synchronous method 
+ * (async () => {
+ *     const data = await saveFile({
+ *         title: 'Save into a file',
+ *         filterPatterns: ["*.txt"],
+ *         allowMultipleSelects: true
+ *     })
+ * 
+ *     console.log(data) // E.g. C:\Users\user\Desktop\default.txt
+ * })
  */
 exports.saveFile = async (
    opts = {
@@ -467,4 +539,3 @@ exports.saveFile = async (
 
    return file || ""
 }
-

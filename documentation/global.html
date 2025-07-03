@@ -154,7 +154,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line68">line 68</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line69">line 69</a>
     </li></ul></dd>
     
 
@@ -238,7 +238,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line393">line 393</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line449">line 449</a>
     </li></ul></dd>
     
 
@@ -429,6 +429,9 @@
 |
 
 <span class="param-type"><code>"yesNoCancel"</code></span>
+|
+
+<span class="param-type"><code>""</code></span>
 
 
             
@@ -480,6 +483,9 @@
 |
 
 <span class="param-type"><code>"question"</code></span>
+|
+
+<span class="param-type"><code>""</code></span>
 
 
             
@@ -531,6 +537,9 @@
 |
 
 <span class="param-type"><code>"no"</code></span>
+|
+
+<span class="param-type"><code>0</code></span>
 
 
             
@@ -614,6 +623,13 @@
 
 
 
+<div class="section-examples">
+<h5>Example</h5>
+
+    <pre class="prettyprint"><code>// With asynchronous methodmessageBox({    title: 'Shutdown',    message: 'Do you want to continue?',    dialogType: 'yesNo',    defaultSelected: 'no'}).then(data => console.log(data)) // E.g. 1 if the user clicked Yes// With synchronous method (async () => {    const data = await messageBox({        title: 'Shutdown',        message: 'Do you want to continue?',        dialogType: 'yesNo',        defaultSelected: 'no'    })    console.log(data) // E.g. 1 if the user clicked Yes})</code></pre>
+
+</div>
+
 </div>
         
             
@@ -664,7 +680,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line367">line 367</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line403">line 403</a>
     </li></ul></dd>
     
 
@@ -889,6 +905,13 @@
 
 
 
+<div class="section-examples">
+<h5>Example</h5>
+
+    <pre class="prettyprint"><code>// With asynchronous methodopenDirectory({    title: 'Open a directory',}).then(data => console.log(data)) // E.g. C:\Users\user\Desktop\// With synchronous method (async () => {    const data = await openDirectory({        title: 'Open a directory',    })    console.log(data) // E.g. C:\Users\user\Desktop\})</code></pre>
+
+</div>
+
 </div>
         
             
@@ -896,7 +919,7 @@
 
     
 
-    <h4 class="name" id="openFile"><span class="type-signature"></span>openFile<span class="signature">(opts<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;string>>}</span></h4>
+    <h4 class="name" id="openFile"><span class="type-signature">(async) </span>openFile<span class="signature">(opts<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;string>>}</span></h4>
 
     
 
@@ -939,7 +962,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line314">line 314</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line335">line 335</a>
     </li></ul></dd>
     
 
@@ -1217,6 +1240,9 @@
             
                 
 <span class="param-type"><code>boolean</code></span>
+|
+
+<span class="param-type"><code>number</code></span>
 
 
             
@@ -1332,6 +1358,13 @@
 
 
 
+<div class="section-examples">
+<h5>Example</h5>
+
+    <pre class="prettyprint"><code>// With asynchronous methodopenFile({    title: 'Open several files',    filterPatterns: ["*.txt"],    allowMultipleSelects: true}).then(data => console.log(data.join(', '))) // E.g. C:\Users\user\Desktop\file.txt, C:\Users\user\Desktop\other-file.txt// With synchronous method (async () => {    const data = await openFile({        title: 'Open several files',        filterPatterns: ["*.txt"],        allowMultipleSelects: true    })    console.log(data.join(', ')) // E.g. C:\Users\user\Desktop\file.txt, C:\Users\user\Desktop\other-file.txt})</code></pre>
+
+</div>
+
 </div>
         
             
@@ -1339,7 +1372,7 @@
 
     
 
-    <h4 class="name" id="saveFile"><span class="type-signature"></span>saveFile<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise.&lt;string>}</span></h4>
+    <h4 class="name" id="saveFile"><span class="type-signature">(async) </span>saveFile<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise.&lt;string>}</span></h4>
 
     
 
@@ -1382,7 +1415,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line448">line 448</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line523">line 523</a>
     </li></ul></dd>
     
 
@@ -1721,6 +1754,13 @@
 
 
 
+<div class="section-examples">
+<h5>Example</h5>
+
+    <pre class="prettyprint"><code>// With asynchronous methodsaveFile({    title: 'Save into a file',    filterPatterns: ["*.txt"],    allowMultipleSelects: true}).then(data => console.log(data)) // E.g. C:\Users\user\Desktop\default.txt// With synchronous method (async () => {    const data = await saveFile({        title: 'Save into a file',        filterPatterns: ["*.txt"],        allowMultipleSelects: true    })    console.log(data) // E.g. C:\Users\user\Desktop\default.txt})</code></pre>
+
+</div>
+
 </div>
         
     
@@ -1848,7 +1888,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line30">line 30</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line31">line 31</a>
     </li></ul></dd>
     
 
@@ -1960,6 +2000,8 @@
 
             
             <td class="attributes">
+                
+                    &lt;optional&gt;<br>
                 
                 
             </td>
@@ -2233,7 +2275,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line36">line 36</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -2426,7 +2468,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line57">line 57</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -2651,7 +2693,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line49">line 49</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
@@ -2928,7 +2970,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line20">line 20</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -2973,7 +3015,7 @@
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Tue Jul 01 2025 11:13:07 GMT+0200 (heure d’été d’Europe centrale) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Thu Jul 03 2025 21:45:49 GMT+0200 (heure d’été d’Europe centrale) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
