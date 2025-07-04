@@ -1,6 +1,7 @@
+// @ts-check
+
 const exec = require('util').promisify(require('child_process').exec)
 const path = require('path')
-const fs = require('fs')
 
 // to fix the white space issue
 const pathFixer = (pathString = '') => {
@@ -36,7 +37,7 @@ const pathFixer = (pathString = '') => {
 /**
  * @typedef {Object} AvailableCommandItemFlags
  * @prop {AvailableCommandItemFlagsItem} title The title of the popup.
- * @prop {AvailableCommandItemFlagsItem} message The message written in the popup.
+ * @prop {AvailableCommandItemFlagsItem} [message] The message written in the popup.
  * @prop {AvailableCommandItemFlagsItem} [dialogType] The type of message box.
  * @prop {AvailableCommandItemFlagsItem} [startPath] The path to the folder where the popup will be opened.
  * @prop {AvailableCommandItemFlagsItem} [filterPatterns] The pattern used to filter the files.
@@ -175,108 +176,109 @@ exports.config = {
 }
 
 const commandBuilder = (command = '', opts) => {
-   command = this.config.availableCommand[command]
+
+   const referencedCommand = this.config.availableCommand[command]
 
    let final = ''
-   if (command.name === this.config.availableCommand.openFile.name) {
+   if (referencedCommand.name === this.config.availableCommand.openFile.name) {
       opts?.allowMultipleSelects
          ? (opts.allowMultipleSelects = 1)
          : (opts.allowMultipleSelects = 0)
 
-      final = `${this.config.vendorPath} ${command.name} `
+      final = `${this.config.vendorPath} ${referencedCommand.name} `
 
       // title
-      final += `${command.flags.title.name} "${
-         opts?.title || command.flags.title.defaultValue
+      final += `${referencedCommand.flags.title.name} "${
+         opts?.title || referencedCommand.flags.title.defaultValue
       }" `
 
       // startPath
-      final += `${command.flags.startPath.name} "${
-         opts?.startPath || command.flags.startPath.defaultValue
+      final += `${referencedCommand.flags.startPath.name} "${
+         opts?.startPath || referencedCommand.flags.startPath.defaultValue
       }/" `
 
       // filterPatterns
-      final += `${command.flags.filterPatterns.name} ",${
+      final += `${referencedCommand.flags.filterPatterns.name} ",${
          opts?.filterPatterns?.join(',') ||
-         command.flags.filterPatterns.defaultValue
+         referencedCommand.flags.filterPatterns.defaultValue
       }" `
 
       // filterPatternsDescription
-      final += `${command.flags.filterPatternsDescription.name} "${
+      final += `${referencedCommand.flags.filterPatternsDescription.name} "${
          opts?.filterPatternsDescription ||
-         command.flags.filterPatternsDescription.defaultValue
+         referencedCommand.flags.filterPatternsDescription.defaultValue
       }" `
 
       // allowMultipleSelects
-      final += `${command.flags.allowMultipleSelects.name} ${
+      final += `${referencedCommand.flags.allowMultipleSelects.name} ${
          opts?.allowMultipleSelects ||
-         command.flags.allowMultipleSelects.defaultValue
+         referencedCommand.flags.allowMultipleSelects.defaultValue
       } `
    }
 
-   if (command.name === this.config.availableCommand.saveFile.name) {
-      final = `${this.config.vendorPath} ${command.name} `
+   if (referencedCommand.name === this.config.availableCommand.saveFile.name) {
+      final = `${this.config.vendorPath} ${referencedCommand.name} `
 
       // title
-      final += `${command.flags.title.name} "${
-         opts?.title || command.flags.title.defaultValue
+      final += `${referencedCommand.flags.title.name} "${
+         opts?.title || referencedCommand.flags.title.defaultValue
       }" `
 
       // startPath
-      final += `${command.flags.startPath.name} "${
-         opts?.startPath || command.flags.startPath.defaultValue
+      final += `${referencedCommand.flags.startPath.name} "${
+         opts?.startPath || referencedCommand.flags.startPath.defaultValue
       }" `
 
       // filterPatterns
-      final += `${command.flags.filterPatterns.name} ",${
+      final += `${referencedCommand.flags.filterPatterns.name} ",${
          opts?.filterPatterns?.join(',') ||
-         command.flags.filterPatterns.defaultValue
+         referencedCommand.flags.filterPatterns.defaultValue
       }" `
 
       // filterPatternsDescription
-      final += `${command.flags.filterPatternsDescription.name} "${
+      final += `${referencedCommand.flags.filterPatternsDescription.name} "${
          opts?.filterPatternsDescription ||
-         command.flags.filterPatternsDescription.defaultValue
+         referencedCommand.flags.filterPatternsDescription.defaultValue
       }" `
    }
 
-   if (command.name === this.config.availableCommand.openDirectory.name) {
-      final = `${this.config.vendorPath} ${command.name} `
+   if (referencedCommand.name === this.config.availableCommand.openDirectory.name) {
+      final = `${this.config.vendorPath} ${referencedCommand.name} `
 
       // title
-      final += `${command.flags.title.name} "${
-         opts?.title || command.flags.title.defaultValue
+      final += `${referencedCommand.flags.title.name} "${
+         opts?.title || referencedCommand.flags.title.defaultValue
       }" `
    }
 
-   if (command.name === this.config.availableCommand.messageBox.name) {
-      final = `${this.config.vendorPath} ${command.name} `
+   if (referencedCommand.name === this.config.availableCommand.messageBox.name) {
+      final = `${this.config.vendorPath} ${referencedCommand.name} `
 
       // title
-      final += `${command.flags.title.name} "${
-         opts?.title || command.flags.title.defaultValue
+      final += `${referencedCommand.flags.title.name} "${
+         opts?.title || referencedCommand.flags.title.defaultValue
       }" `
 
       // message
-      final += `${command.flags.message.name} "${
-         opts?.message || command.flags.message.defaultValue
+      final += `${referencedCommand.flags.message.name} "${
+         opts?.message || referencedCommand.flags.message.defaultValue
       }" `
 
       // dialogType
-      final += `${command.flags.dialogType.name} ${
-         command.flags.dialogType.typesMapper[opts?.dialogType] ||
-         command.flags.dialogType.defaultValue
+      final += `${referencedCommand.flags.dialogType.name} ${
+         referencedCommand.flags.dialogType.typesMapper[opts?.dialogType] ||
+         referencedCommand.flags.dialogType.defaultValue
       } `
 
       // iconType String
-      final += `${command.flags.iconType.name} ${
-         opts?.iconType || command.flags.iconType.defaultValue
+      final += `${referencedCommand.flags.iconType.name} ${
+         opts?.iconType || referencedCommand.flags.iconType.defaultValue
       } `
 
       // defaultSelected
-      final += `${command.flags.defaultSelected.name} ${
-         command.flags.defaultSelected.typesMapper[opts?.defaultSelected] ||
-         command.flags.defaultSelected.default
+      final += `${referencedCommand.flags.defaultSelected.name} ${
+         referencedCommand.flags.defaultSelected.typesMapper[opts?.defaultSelected] ||
+         referencedCommand.flags.defaultSelected.default
       } `
    }
 
@@ -291,8 +293,8 @@ const commandBuilder = (command = '', opts) => {
 exports.NoSelectedFileError = class extends Error {
    /**
     * Create a [NoSelectedFileError]{@linkcode NoSelectedFileError} instance.
-    * @param {string} message The message of the error.
-    * @param {ErrorOptions} options The error options. These are the same as those for the basic [<code>Error</code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
+    * @param {string} [message] The message of the error.
+    * @param {ErrorOptions} [options] The error options. These are the same as those for the basic [<code>Error</code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
     */
    constructor(message, options) {
       super(message, options)
@@ -307,9 +309,28 @@ exports.NoSelectedFileError = class extends Error {
  * @param {string} [opts.startPath="./"] The start path of the popup
  * @param {Array<string>} [opts.filterPatterns=["*"]] The filter patterns of the popup. For example, <code>["*.exe", "*.txt"]</code>
  * @param {string} [opts.filterPatternsDescription=""] The filter patterns description of the popup, separated by commas; for example, <code>"Executable files,Text files"</code>
- * @param {boolean} [opts.allowMultipleSelects=false] The boolean that define if the window allow multiple selects of files
+ * @param {boolean|number} [opts.allowMultipleSelects=false] The boolean that define if the window allow multiple selects of files
  * @returns {Promise<Array<string>>} A promise representing an array that contains the paths to the selected files. For example, <code>["C:\\Users\\user\\Desktop\\file.exe"]</code>
  * @throws {NoSelectedFileError} If the user didn't select any file.
+ * @async
+ * @example
+ * // With asynchronous method
+ * openFile({
+ *     title: 'Open several files',
+ *     filterPatterns: ["*.txt"],
+ *     allowMultipleSelects: true
+ * }).then(data => console.log(data.join(', '))) // E.g. C:\Users\user\Desktop\file.txt, C:\Users\user\Desktop\other-file.txt
+ * 
+ * // With synchronous method 
+ * (async () => {
+ *     const data = await openFile({
+ *         title: 'Open several files',
+ *         filterPatterns: ["*.txt"],
+ *         allowMultipleSelects: true
+ *     })
+ * 
+ *     console.log(data.join(', ')) // E.g. C:\Users\user\Desktop\file.txt, C:\Users\user\Desktop\other-file.txt
+ * })
  */
 exports.openFile = async (
    opts = {
@@ -327,16 +348,16 @@ exports.openFile = async (
       const err = out?.slice(out?.indexOf('-066944'))?.split('~')?.at(1)
       throw new Error(err)
    }
-   files = out
+   let files = out
       ?.slice(out?.indexOf('-066945'))
       ?.split('~')
       ?.at(1)
       ?.split('|')
       .map((p) => path.resolve(p))
 
-   if (files.length === 0) throw new this.NoSelectedFileError('no files selected')
+   if (files?.length === 0) throw new this.NoSelectedFileError('no files selected')
 
-   return files
+   return files || []
 }
 
 /**
@@ -347,8 +368,8 @@ exports.openFile = async (
 exports.NoSelectedDirectoryError = class extends Error {
    /**
     * Create a [NoSelectedDirectoryError]{@linkcode NoSelectedDirectoryError} instance.
-    * @param {string} message The message of the error.
-    * @param {ErrorOptions} options The error options. These are the same as those for the basic [<code>Error</code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
+    * @param {string} [message] The message of the error.
+    * @param {ErrorOptions} [options] The error options. These are the same as those for the basic [<code>Error</code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
     */
    constructor(message, options) {
       super(message, options)
@@ -363,6 +384,21 @@ exports.NoSelectedDirectoryError = class extends Error {
  * @param {string} [opts.title="message"] The title of the popup.
  * @returns {Promise<string>} A Promise representing the path to the selected directory. For example, <code>"C:\\Users\\user\\Desktop\\"</code>
  * @throws {NoSelectedDirectoryError} If the user didn't select any directory.
+ * @example
+ * // With asynchronous method
+ * openDirectory({
+ *     title: 'Open a directory',
+ * }).then(data => console.log(data)) // E.g. C:\Users\user\Desktop\
+ * 
+ * // With synchronous method 
+ * (async () => {
+ *     const data = await openDirectory({
+ *         title: 'Open a directory',
+ *     })
+ * 
+ *     console.log(data) // E.g. C:\Users\user\Desktop\
+ * })
+
  */
 exports.openDirectory = async (opts = { title: '' }) => {
    let { stdout: out, stderr } = await exec(
@@ -374,21 +410,42 @@ exports.openDirectory = async (opts = { title: '' }) => {
       const err = out?.slice(out?.indexOf('-066944'))?.split('~')?.at(1)
       throw new this.NoSelectedDirectoryError(err)
    }
-   folder = out?.slice(out?.indexOf('-066945'))?.split('~')?.at(1)
+   let folder = out?.slice(out?.indexOf('-066945'))?.split('~')?.at(1)
 
-   return folder
+   return folder || ""
 }
 
 /**
  * Open a dialog box.
  * @async
+ * @deprecated Use [dialogBox()]{@linkcode dialogBox} instead.
  * @param {Object} opts
  * @param {string} [opts.title="message"] The title of the popup
  * @param {string} [opts.message="message"] The message of the popup
- * @param {"ok"|"okCancel"|"yesNo"|"yesNoCancel"} [opts.dialogType="ok"] The dialog type of the popup
- * @param {"info"|"warning"|"error"|"question"} [opts.iconType="info"] The icon and sound types of the popup
- * @param {"ok"|"cancel"|"yes"|"no"} [opts.defaultSelected="ok"] The default selected button of the popup
+ * @param {"ok"|"okCancel"|"yesNo"|"yesNoCancel"|""} [opts.dialogType="ok"] The dialog type of the popup
+ * @param {"info"|"warning"|"error"|"question"|""} [opts.iconType="info"] The icon and sound types of the popup
+ * @param {"ok"|"cancel"|"yes"|"no"|0} [opts.defaultSelected="ok"] The default selected button of the popup
  * @return {Promise<0|1|2>} A Promise representing the selected button number: <style type="text/css">#messagebox-return-table {border-collapse: collapse;} #messagebox-return-table td {border: 1px solid black; padding: 5px;} #messagebox-return-table tr:first-child td:first-child {border:none;}</style><br/><table id="messagebox-return-table"><tr><td><td><code>0</code><td><code>1</code><td><code>2</code><tr><td><code>"ok"</code><td><td>Ok<td><tr><td><code>"okCancel"</code><td>Cancel<td>Ok<td><tr><td><code>"yesNo"</code><td>No<td>Yes<td><tr><td><code>"yesNoCancel"</code><td>Cancel<td>Yes<td>No</table>
+ * @example
+ * // With asynchronous method
+ * messageBox({
+ *     title: 'Shutdown',
+ *     message: 'Do you want to continue?',
+ *     dialogType: 'yesNo',
+ *     defaultSelected: 'no'
+ * }).then(data => console.log(data)) // E.g. 1 if the user clicked Yes
+ * 
+ * // With synchronous method 
+ * (async () => {
+ *     const data = await messageBox({
+ *         title: 'Shutdown',
+ *         message: 'Do you want to continue?',
+ *         dialogType: 'yesNo',
+ *         defaultSelected: 'no'
+ *     })
+ *     console.log(data) // E.g. 1 if the user clicked Yes
+ * })
+
  */
 exports.messageBox = async (
    opts = {
@@ -408,14 +465,119 @@ exports.messageBox = async (
       const err = answer?.slice(answer?.indexOf('-066944'))?.split('~')?.at(1)
       throw new Error(err)
    }
-   answer = Number(
+
+   let result = Number(
       answer // yes/ok=1 no=2 cancel=0
          ?.slice(answer?.indexOf('-066945'))
          ?.split('~')
          ?.at(1)
    )
-   return answer
+   return /** @type {0|1|2} */ (result % 3)
 }
+
+/**
+ * This object contains all the values that can be returned by [dialogBox()]{@linkcode dialogBox}, where the keys are the names of the buttons (`YES`, `CANCEL`, etc.).<br />
+ * You can use it to compare the result (e.g. <code>if (result === DialogBoxResult.YES) { ... }</code>)
+ * @type {Readonly<{ CANCEL: 0, OK: 1, YES: 1, NO: 2 }>}
+ */
+exports.DialogBoxResult = Object.freeze({
+   CANCEL: 0,
+   OK: 1,
+   YES: 1,
+   NO: 2
+})
+
+/** @typedef {0|1|2} DialogBoxValue */
+
+/**
+ * Open a dialog box.
+ * @async
+ * @param {Object} opts
+ * @param {string} [opts.title="message"] The title of the popup
+ * @param {string} [opts.message="message"] The message of the popup
+ * @param {"ok"|"okCancel"|"yesNo"|"yesNoCancel"|""} [opts.dialogType="ok"] The dialog type of the popup
+ * @param {"info"|"warning"|"error"|"question"|""} [opts.iconType="info"] The icon and sound types of the popup
+ * @param {"ok"|"cancel"|"yes"|"no"|0} [opts.defaultSelected="ok"] The default selected button of the popup
+ * @return {Promise<DialogBoxValue>} A Promise representing the selected button number: <code>0</code> = Cancel, <code>1</code> = OK or Yes, <code>3</code> = No
+ * @example
+ * // With asynchronous method
+ * messageBox({
+ *     title: 'Shutdown',
+ *     message: 'Do you want to continue?',
+ *     dialogType: 'yesNo',
+ *     defaultSelected: 'no'
+ * }).then(data => console.log(data)) // E.g. 1 if the user clicked Yes
+ * 
+ * // With synchronous method 
+ * (async () => {
+ *     const data = await messageBox({
+ *         title: 'Shutdown',
+ *         message: 'Do you want to continue?',
+ *         dialogType: 'yesNo',
+ *         defaultSelected: 'no'
+ *     })
+ *     console.log(data) // E.g. 1 if the user clicked Yes
+ * })
+
+ */
+exports.dialogBox = async (
+   opts = {
+      title: '',
+      message: '',
+      dialogType: '',
+      iconType: '',
+      defaultSelected: 0,
+   }
+) => {
+   let { stdout: answer, stderr } = await exec(
+      commandBuilder('messageBox', opts)
+   )
+   if (stderr) throw new Error(stderr)
+
+   if (answer.includes('-066944')) {
+      const err = answer?.slice(answer?.indexOf('-066944'))?.split('~')?.at(1)
+      throw new Error(err)
+   }
+
+   let rawResult = Number(
+      answer // yes/ok=1 no=2 cancel=0
+         ?.slice(answer?.indexOf('-066945'))
+         ?.split('~')
+         ?.at(1)
+   )
+
+   /** @type {0|1|2} */
+   let finalResult
+   switch (opts.dialogType) {
+      case '':
+      case 'ok':
+         finalResult = this.DialogBoxResult.OK
+         break
+      case 'okCancel':
+         finalResult = rawResult === 0
+            ? this.DialogBoxResult.CANCEL
+            : this.DialogBoxResult.OK
+         break
+      case 'yesNo':
+         finalResult = rawResult === 0
+            ? this.DialogBoxResult.NO
+            : this.DialogBoxResult.YES
+         break
+      case 'yesNoCancel':
+      default:
+         finalResult = rawResult === 0
+            ? this.DialogBoxResult.CANCEL
+            : rawResult === 1
+               ? this.DialogBoxResult.YES
+               : this.DialogBoxResult.NO
+         break
+
+   }
+   return finalResult
+}
+
+
+
 
 /**
  * An error class that occurs when the user donesn't select any file in the [saveFile()]{@linkcode openFile} function.
@@ -425,8 +587,8 @@ exports.messageBox = async (
 exports.NoSavedFileError = class extends Error {
    /**
     * Create a [NoSavedFileError]{@linkcode NoSavedFileError} instance.
-    * @param {string} message The message of the error.
-    * @param {ErrorOptions} options The error options. These are the same as those for the basic [<code>Error</code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
+    * @param {string} [message] The message of the error.
+    * @param {ErrorOptions} [options] The error options. These are the same as those for the basic [<code>Error</code>]{@linkcode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error} class.
     */
    constructor(message, options) {
       super(message, options)
@@ -434,9 +596,9 @@ exports.NoSavedFileError = class extends Error {
    }
 }
 
-
 /**
  * Open a "Save file" window.
+ * @async
  * @param {Object} opts The options of the window.
  * @param {string} [opts.title="save"] The title of the popup.
  * @param {string} [opts.startPath="./default.txt"] The start path of the popup and the saved file name
@@ -444,6 +606,24 @@ exports.NoSavedFileError = class extends Error {
  * @param {string} [opts.filterPatternsDescription=""] The filter patterns description of the popup, separated by commas; for example, <code>"Executable files,Text files"</code>
  * @returns {Promise<string>} A Promise representing the path to the saved file. Example: <code>"C:\\Users\\user\\Desktop\\default.txt"</code>
  * @throws {NoSavedFileError} If the user cancelled and didn't select any file to save in.
+ * @example
+ * // With asynchronous method
+ * saveFile({
+ *     title: 'Save into a file',
+ *     filterPatterns: ["*.txt"],
+ *     allowMultipleSelects: true
+ * }).then(data => console.log(data)) // E.g. C:\Users\user\Desktop\default.txt
+ * 
+ * // With synchronous method 
+ * (async () => {
+ *     const data = await saveFile({
+ *         title: 'Save into a file',
+ *         filterPatterns: ["*.txt"],
+ *         allowMultipleSelects: true
+ *     })
+ * 
+ *     console.log(data) // E.g. C:\Users\user\Desktop\default.txt
+ * })
  */
 exports.saveFile = async (
    opts = {
@@ -460,8 +640,7 @@ exports.saveFile = async (
       const err = out?.slice(out?.indexOf('-066944'))?.split('~')?.at(1)
       throw new this.NoSavedFileError(err)
    }
-   file = out?.slice(out?.indexOf('-066945'))?.split('~')?.at(1)
+   let file = out?.slice(out?.indexOf('-066945'))?.split('~')?.at(1)
 
-   return file
+   return file || ""
 }
-
