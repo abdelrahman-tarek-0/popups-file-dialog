@@ -418,6 +418,7 @@ exports.openDirectory = async (opts = { title: '' }) => {
 /**
  * Open a dialog box.
  * @async
+ * @deprecated Use [dialogBox()]{@linkcode dialogBox} instead.
  * @param {Object} opts
  * @param {string} [opts.title="message"] The title of the popup
  * @param {string} [opts.message="message"] The message of the popup
@@ -473,6 +474,110 @@ exports.messageBox = async (
    )
    return /** @type {0|1|2} */ (result % 3)
 }
+
+/**
+ * This object contains all the values that can be returned by [dialogBox()]{@linkcode dialogBox}, where the keys are the names of the buttons (`YES`, `CANCEL`, etc.).<br />
+ * You can use it to compare the result (e.g. <code>if (result === DialogBoxResult.YES) { ... }</code>)
+ * @type {Readonly<{ CANCEL: 0, OK: 1, YES: 1, NO: 2 }>}
+ */
+exports.DialogBoxResult = Object.freeze({
+   CANCEL: 0,
+   OK: 1,
+   YES: 1,
+   NO: 2
+})
+
+/** @typedef {0|1|2} DialogBoxValue */
+
+/**
+ * Open a dialog box.
+ * @async
+ * @param {Object} opts
+ * @param {string} [opts.title="message"] The title of the popup
+ * @param {string} [opts.message="message"] The message of the popup
+ * @param {"ok"|"okCancel"|"yesNo"|"yesNoCancel"|""} [opts.dialogType="ok"] The dialog type of the popup
+ * @param {"info"|"warning"|"error"|"question"|""} [opts.iconType="info"] The icon and sound types of the popup
+ * @param {"ok"|"cancel"|"yes"|"no"|0} [opts.defaultSelected="ok"] The default selected button of the popup
+ * @return {Promise<DialogBoxValue>} A Promise representing the selected button number: <code>0</code> = Cancel, <code>1</code> = OK or Yes, <code>3</code> = No
+ * @example
+ * // With asynchronous method
+ * messageBox({
+ *     title: 'Shutdown',
+ *     message: 'Do you want to continue?',
+ *     dialogType: 'yesNo',
+ *     defaultSelected: 'no'
+ * }).then(data => console.log(data)) // E.g. 1 if the user clicked Yes
+ * 
+ * // With synchronous method 
+ * (async () => {
+ *     const data = await messageBox({
+ *         title: 'Shutdown',
+ *         message: 'Do you want to continue?',
+ *         dialogType: 'yesNo',
+ *         defaultSelected: 'no'
+ *     })
+ *     console.log(data) // E.g. 1 if the user clicked Yes
+ * })
+
+ */
+exports.dialogBox = async (
+   opts = {
+      title: '',
+      message: '',
+      dialogType: '',
+      iconType: '',
+      defaultSelected: 0,
+   }
+) => {
+   let { stdout: answer, stderr } = await exec(
+      commandBuilder('messageBox', opts)
+   )
+   if (stderr) throw new Error(stderr)
+
+   if (answer.includes('-066944')) {
+      const err = answer?.slice(answer?.indexOf('-066944'))?.split('~')?.at(1)
+      throw new Error(err)
+   }
+
+   let rawResult = Number(
+      answer // yes/ok=1 no=2 cancel=0
+         ?.slice(answer?.indexOf('-066945'))
+         ?.split('~')
+         ?.at(1)
+   )
+
+   /** @type {0|1|2} */
+   let finalResult
+   switch (opts.dialogType) {
+      case '':
+      case 'ok':
+         finalResult = this.DialogBoxResult.OK
+         break
+      case 'okCancel':
+         finalResult = rawResult === 0
+            ? this.DialogBoxResult.CANCEL
+            : this.DialogBoxResult.OK
+         break
+      case 'yesNo':
+         finalResult = rawResult === 0
+            ? this.DialogBoxResult.NO
+            : this.DialogBoxResult.YES
+         break
+      case 'yesNoCancel':
+      default:
+         finalResult = rawResult === 0
+            ? this.DialogBoxResult.CANCEL
+            : rawResult === 1
+               ? this.DialogBoxResult.YES
+               : this.DialogBoxResult.NO
+         break
+
+   }
+   return finalResult
+}
+
+
+
 
 /**
  * An error class that occurs when the user donesn't select any file in the [saveFile()]{@linkcode openFile} function.

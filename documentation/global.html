@@ -24,7 +24,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSavedFileError.html">NoSavedFileError</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSelectedDirectoryError.html">NoSelectedDirectoryError</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSelectedFileError.html">NoSelectedFileError</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#config">config</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#messageBox">messageBox</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openDirectory">openDirectory</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openFile">openFile</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#saveFile">saveFile</a></span></li>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSavedFileError.html">NoSavedFileError</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSelectedDirectoryError.html">NoSelectedDirectoryError</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NoSelectedFileError.html">NoSelectedFileError</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#DialogBoxResult">DialogBoxResult</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#config">config</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#dialogBox">dialogBox</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#messageBox">messageBox</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openDirectory">openDirectory</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openFile">openFile</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#saveFile">saveFile</a></span></li>
 </nav>
 
 <div id="main">
@@ -112,6 +112,81 @@
         
             
 <div class="section-members">
+<h4 class="name" id="DialogBoxResult"><span class="type-signature"></span>DialogBoxResult<span class="type-signature"> :Readonly.&lt;{CANCEL: 0, OK: 1, YES: 1, NO: 2}></span></h4>
+
+
+
+
+<div class="description">
+    This object contains all the values that can be returned by <a href="global.html#dialogBox"><code>dialogBox()</code></a>, where the keys are the names of the buttons (`YES`, `CANCEL`, etc.).<br />
+You can use it to compare the result (e.g. <code>if (result === DialogBoxResult.YES) { ... }</code>)
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line483">line 483</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>Readonly.&lt;{CANCEL: 0, OK: 1, YES: 1, NO: 2}></code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+        
+            
+<div class="section-members">
 <h4 class="name" id="config"><span class="type-signature"></span>config<span class="type-signature"> :<a href="global.html#Config">Config</a></span></h4>
 
 
@@ -195,7 +270,7 @@
 
     
 
-    <h4 class="name" id="messageBox"><span class="type-signature">(async) </span>messageBox<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise.&lt;(0|1|2)>}</span></h4>
+    <h4 class="name" id="dialogBox"><span class="type-signature">(async) </span>dialogBox<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#DialogBoxValue">DialogBoxValue</a>>}</span></h4>
 
     
 
@@ -238,7 +313,468 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line449">line 449</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line523">line 523</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Object</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                
+                
+                    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "message"
+                
+                </td>
+            
+
+            <td class="description last">
+                The title of the popup
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "message"
+                
+                </td>
+            
+
+            <td class="description last">
+                The message of the popup
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dialogType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>"ok"</code></span>
+|
+
+<span class="param-type"><code>"okCancel"</code></span>
+|
+
+<span class="param-type"><code>"yesNo"</code></span>
+|
+
+<span class="param-type"><code>"yesNoCancel"</code></span>
+|
+
+<span class="param-type"><code>""</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "ok"
+                
+                </td>
+            
+
+            <td class="description last">
+                The dialog type of the popup
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>iconType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>"info"</code></span>
+|
+
+<span class="param-type"><code>"warning"</code></span>
+|
+
+<span class="param-type"><code>"error"</code></span>
+|
+
+<span class="param-type"><code>"question"</code></span>
+|
+
+<span class="param-type"><code>""</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "info"
+                
+                </td>
+            
+
+            <td class="description last">
+                The icon and sound types of the popup
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultSelected</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>"ok"</code></span>
+|
+
+<span class="param-type"><code>"cancel"</code></span>
+|
+
+<span class="param-type"><code>"yes"</code></span>
+|
+
+<span class="param-type"><code>"no"</code></span>
+|
+
+<span class="param-type"><code>0</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "ok"
+                
+                </td>
+            
+
+            <td class="description last">
+                The default selected button of the popup
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>Promise.&lt;<a href="global.html#DialogBoxValue">DialogBoxValue</a>></code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    A Promise representing the selected button number: <code>0</code> = Cancel, <code>1</code> = OK or Yes, <code>3</code> = No
+</div>
+
+    
+</div>
+
+
+
+<div class="section-examples">
+<h5>Example</h5>
+
+    <pre class="prettyprint"><code>// With asynchronous method
+messageBox({
+    title: 'Shutdown',
+    message: 'Do you want to continue?',
+    dialogType: 'yesNo',
+    defaultSelected: 'no'
+}).then(data => console.log(data)) // E.g. 1 if the user clicked Yes
+
+// With synchronous method 
+(async () => {
+    const data = await messageBox({
+        title: 'Shutdown',
+        message: 'Do you want to continue?',
+        dialogType: 'yesNo',
+        defaultSelected: 'no'
+    })
+    console.log(data) // E.g. 1 if the user clicked Yes
+})</code></pre>
+
+</div>
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="messageBox"><span class="type-signature">(async) </span>messageBox<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise.&lt;(0|1|2)>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Open a dialog box.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>Use <a href="global.html#dialogBox"><code>dialogBox()</code></a> instead.</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line450">line 450</a>
     </li></ul></dd>
     
 
@@ -626,7 +1162,24 @@
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>// With asynchronous methodmessageBox({    title: 'Shutdown',    message: 'Do you want to continue?',    dialogType: 'yesNo',    defaultSelected: 'no'}).then(data => console.log(data)) // E.g. 1 if the user clicked Yes// With synchronous method (async () => {    const data = await messageBox({        title: 'Shutdown',        message: 'Do you want to continue?',        dialogType: 'yesNo',        defaultSelected: 'no'    })    console.log(data) // E.g. 1 if the user clicked Yes})</code></pre>
+    <pre class="prettyprint"><code>// With asynchronous method
+messageBox({
+    title: 'Shutdown',
+    message: 'Do you want to continue?',
+    dialogType: 'yesNo',
+    defaultSelected: 'no'
+}).then(data => console.log(data)) // E.g. 1 if the user clicked Yes
+
+// With synchronous method 
+(async () => {
+    const data = await messageBox({
+        title: 'Shutdown',
+        message: 'Do you want to continue?',
+        dialogType: 'yesNo',
+        defaultSelected: 'no'
+    })
+    console.log(data) // E.g. 1 if the user clicked Yes
+})</code></pre>
 
 </div>
 
@@ -908,7 +1461,19 @@
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>// With asynchronous methodopenDirectory({    title: 'Open a directory',}).then(data => console.log(data)) // E.g. C:\Users\user\Desktop\// With synchronous method (async () => {    const data = await openDirectory({        title: 'Open a directory',    })    console.log(data) // E.g. C:\Users\user\Desktop\})</code></pre>
+    <pre class="prettyprint"><code>// With asynchronous method
+openDirectory({
+    title: 'Open a directory',
+}).then(data => console.log(data)) // E.g. C:\Users\user\Desktop\
+
+// With synchronous method 
+(async () => {
+    const data = await openDirectory({
+        title: 'Open a directory',
+    })
+
+    console.log(data) // E.g. C:\Users\user\Desktop\
+})</code></pre>
 
 </div>
 
@@ -1361,7 +1926,23 @@
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>// With asynchronous methodopenFile({    title: 'Open several files',    filterPatterns: ["*.txt"],    allowMultipleSelects: true}).then(data => console.log(data.join(', '))) // E.g. C:\Users\user\Desktop\file.txt, C:\Users\user\Desktop\other-file.txt// With synchronous method (async () => {    const data = await openFile({        title: 'Open several files',        filterPatterns: ["*.txt"],        allowMultipleSelects: true    })    console.log(data.join(', ')) // E.g. C:\Users\user\Desktop\file.txt, C:\Users\user\Desktop\other-file.txt})</code></pre>
+    <pre class="prettyprint"><code>// With asynchronous method
+openFile({
+    title: 'Open several files',
+    filterPatterns: ["*.txt"],
+    allowMultipleSelects: true
+}).then(data => console.log(data.join(', '))) // E.g. C:\Users\user\Desktop\file.txt, C:\Users\user\Desktop\other-file.txt
+
+// With synchronous method 
+(async () => {
+    const data = await openFile({
+        title: 'Open several files',
+        filterPatterns: ["*.txt"],
+        allowMultipleSelects: true
+    })
+
+    console.log(data.join(', ')) // E.g. C:\Users\user\Desktop\file.txt, C:\Users\user\Desktop\other-file.txt
+})</code></pre>
 
 </div>
 
@@ -1415,7 +1996,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line523">line 523</a>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line628">line 628</a>
     </li></ul></dd>
     
 
@@ -1757,7 +2338,23 @@
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>// With asynchronous methodsaveFile({    title: 'Save into a file',    filterPatterns: ["*.txt"],    allowMultipleSelects: true}).then(data => console.log(data)) // E.g. C:\Users\user\Desktop\default.txt// With synchronous method (async () => {    const data = await saveFile({        title: 'Save into a file',        filterPatterns: ["*.txt"],        allowMultipleSelects: true    })    console.log(data) // E.g. C:\Users\user\Desktop\default.txt})</code></pre>
+    <pre class="prettyprint"><code>// With asynchronous method
+saveFile({
+    title: 'Save into a file',
+    filterPatterns: ["*.txt"],
+    allowMultipleSelects: true
+}).then(data => console.log(data)) // E.g. C:\Users\user\Desktop\default.txt
+
+// With synchronous method 
+(async () => {
+    const data = await saveFile({
+        title: 'Save into a file',
+        filterPatterns: ["*.txt"],
+        allowMultipleSelects: true
+    })
+
+    console.log(data) // E.g. C:\Users\user\Desktop\default.txt
+})</code></pre>
 
 </div>
 
@@ -3000,6 +3597,82 @@
 </div>
 
             
+                
+<div class="section-members">
+<h4 class="name" id="DialogBoxValue">DialogBoxValue</h4>
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="file-dialog.js.html">file-dialog.js</a>, <a href="file-dialog.js.html#line490">line 490</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>0</code></span>
+|
+
+<span class="param-type"><code>1</code></span>
+|
+
+<span class="param-type"><code>2</code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+            
     
 
     
@@ -3015,7 +3688,7 @@
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Thu Jul 03 2025 21:45:49 GMT+0200 (heure d’été d’Europe centrale) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Fri Jul 04 2025 11:01:25 GMT+0200 (heure d’été d’Europe centrale) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

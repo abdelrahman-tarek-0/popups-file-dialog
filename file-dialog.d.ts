@@ -10,7 +10,7 @@ declare module 'popups-file-dialog' {
 
     export const openDirectory: (opts?: { title?: string }) => Promise<string>
 
-
+    /** @deprecated Use [dialogBox()]{@linkcode dialogBox} instead. */
     export const messageBox: (opts?: {
         title?: string,
         message?: string,
@@ -18,6 +18,23 @@ declare module 'popups-file-dialog' {
         iconType?: "info" | "warning" | "error" | "question",
         defaultSelected?: "yes" | "no" | "ok" | "cancel"
     }) => Promise<0 | 1 | 2>
+
+    export const DialogBoxResult: Readonly<{
+        CANCEL: 0,
+        OK: 1,
+        YES: 1,
+        NO: 2
+    }>
+
+    export type DialogBoxValue = 0 | 1 | 2
+
+    export const dialogBox: (opts?: {
+        title?: string,
+        message?: string,
+        dialogType?: "ok" | "okCancel" | "yesNo" | "yesNoCancel",
+        iconType?: "info" | "warning" | "error" | "question",
+        defaultSelected?: "yes" | "no" | "ok" | "cancel"
+    }) => Promise<DialogBoxValue>
 
     export const saveFile: (opts?: {
         title?: string,
